@@ -124,7 +124,7 @@
 				dat += "Lock status: <a href='byond://?src=\ref[src];lock=1'>[src.scanner.locked ? "Locked" : "Unlocked"]</a><br>"
 
 			if (!isnull(src.pod1))
-				dat += "Biomass: <i>[src.pod1.biomass]</i><br>"
+				dat += "Charges: <i>[src.pod1.biomass]</i><br>"
 
 			// Database
 			dat += "<h4>Database Functions</h4>"
@@ -172,7 +172,7 @@
 				if(pod1 && pod1.biomass >= CLONE_BIOMASS)
 					dat += {"<a href='byond://?src=\ref[src];clone=\ref[src.active_record]'>Clone</a><br>"}
 				else
-					dat += {"<b>Unsufficient biomass</b><br>"}
+					dat += {"<b>Unsufficient stem cell charges</b><br>"}
 
 		if(4)
 			if (!src.active_record)
@@ -307,7 +307,7 @@
 			else if(pod1.occupant)
 				temp = "Error: Clonepod is currently occupied."
 			else if(pod1.biomass < CLONE_BIOMASS)
-				temp = "Error: Not enough biomass."
+				temp = "Error: Not enough stem cell charges."
 			else if(pod1.mess)
 				temp = "Error: Clonepod malfunction."
 			else if(!config.revival_cloning)
