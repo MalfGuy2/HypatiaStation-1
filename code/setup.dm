@@ -620,8 +620,10 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define R_SOUNDS		2048
 #define R_SPAWN			4096
 #define R_MOD			8192
+#define R_DONOR			16348
+#define R_ZAS			32768
 
-#define R_MAXPERMISSION 8192 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+#define R_MAXPERMISSION 32768 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
 
 #define R_HOST			65535
 
