@@ -11,6 +11,7 @@
 	var/area/area = null
 	var/otherarea = null
 	//	luminosity = 1
+	layer = 70 // Glow in the dark.
 
 /obj/machinery/light_switch/New()
 	..()
@@ -31,7 +32,9 @@
 /obj/machinery/light_switch/proc/updateicon()
 	if(stat & NOPOWER)
 		icon_state = "light-p"
+		layer = 3
 	else
+		layer = 70
 		if(on)
 			icon_state = "light1"
 		else
