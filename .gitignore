@@ -3,3 +3,6 @@
 *.rsc
 *.dmb
 *.lk
+*.dll
+data
+config
