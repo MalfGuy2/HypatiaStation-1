@@ -95,7 +95,7 @@
 	icon_state = "syndicate"
 	item_state = "bl_suit"
 	item_color = "syndicate"
-	desc = "it's a cybernetically enhanced jumpsuit used for administrative duties."
+	desc = "It's a cybernetically enhanced jumpsuit used for administrative duties."
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags = FPRINT | TABLEPASS
@@ -120,14 +120,14 @@
 
 /obj/item/clothing/under/rainbow
 	name = "rainbow"
-	desc = "rainbow"
+	desc = "Rainbow!"
 	icon_state = "rainbow"
 	item_state = "rainbow"
 	item_color = "rainbow"
 
 /obj/item/clothing/under/cloud
 	name = "cloud"
-	desc = "cloud"
+	desc = "Cloudy with a chance of tators"
 	icon_state = "cloud"
 	item_color = "cloud"
 
@@ -287,19 +287,19 @@
 
 /obj/item/clothing/under/dress/dress_rd
 	name = "research director dress uniform"
-	desc = "Feminine fashion for the style concious RD."
+	desc = "Feminine fashion for the style conscious RD."
 	icon_state = "dress_rd"
 	item_color = "dress_rd"
 
 /obj/item/clothing/under/dress/dress_cap
 	name = "captain dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	desc = "Feminine fashion for the style conscious captain."
 	icon_state = "dress_cap"
 	item_color = "dress_cap"
 
 /obj/item/clothing/under/dress/dress_hop
 	name = "head of personal dress uniform"
-	desc = "Feminine fashion for the style concious HoP."
+	desc = "Feminine fashion for the style conscious HoP."
 	icon_state = "dress_hop"
 	item_color = "dress_hop"
 
