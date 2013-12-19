@@ -200,7 +200,8 @@
 
 
 /obj/machinery/power/supermatter/attack_robot(mob/user as mob)
-	return attack_hand(user)
+	if(get_dist(user, src) > 1) // Wait a minute, this proc can fire from a distance in borgs.. we don't WANT to melt a borg at 15 paces do we? -- Marajin
+	else return attack_hand(user)
 
 /obj/machinery/power/supermatter/attack_ai(mob/user as mob)
 	user << "<span class = \"warning\">You attempt to interface with the control circuits but find they are not connected to your network.  Maybe in a future firmware update.</span>"
@@ -209,7 +210,7 @@
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash.</span>",\
 		"<span class=\"danger\">You reach out and touch \the [src], everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"</span>",\
-		"<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
+		"<span class=\"warning\">You hear an unearthly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
 
 	Consume(user)
 
