@@ -279,7 +279,7 @@
 			if("monkey")			M.change_mob_type( /mob/living/carbon/monkey , null, null, delmob )
 			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
-			if("runtime")			M.change_mob_type( /mob/living/simple_animal/cat/Runtime , null, null, delmob )
+			if("happykitten")		M.change_mob_type( /mob/living/simple_animal/cat/HappyKitten , null, null, delmob )
 			if("corgi")				M.change_mob_type( /mob/living/simple_animal/corgi , null, null, delmob )
 			if("ian")				M.change_mob_type( /mob/living/simple_animal/corgi/Ian , null, null, delmob )
 			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
@@ -511,10 +511,10 @@
 				jobs += "</tr><tr align='center'>"
 				counter = 0
 
-		if(jobban_isbanned(M, "Internal Affairs Agent"))  
+		if(jobban_isbanned(M, "Internal Affairs Agent"))
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Internal Affairs Agent;jobban4=\ref[M]'><font color=red>Internal Affairs Agent</font></a></td>"
 		else
-			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Internal Affairs Agent;jobban4=\ref[M]'>Internal Affairs Agent</a></td>"	
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Internal Affairs Agent;jobban4=\ref[M]'>Internal Affairs Agent</a></td>"
 
 		jobs += "</tr></table>"
 
