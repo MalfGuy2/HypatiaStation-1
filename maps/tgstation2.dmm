@@ -4163,7 +4163,7 @@
 "bCc" = (/obj/machinery/power/apc{dir = 1; name = "Mining Dock APC"; pixel_y = 24},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor,/area/quartermaster/miningdock)
 "bCd" = (/obj/structure/disposalpipe/segment,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/simulated/floor,/area/quartermaster/miningdock)
 "bCe" = (/obj/structure/rack{dir = 1},/obj/item/weapon/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/machinery/light{dir = 1},/obj/machinery/light_switch{pixel_y = 24},/obj/item/weapon/storage/belt/utility,/turf/simulated/floor,/area/quartermaster/miningdock)
-"bCf" = (/obj/machinery/requests_console{announcementConsole = 1; department = "Cargo Bay"; departmentType = 2; pixel_x = -30; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/simulated/floor,/area/quartermaster/qm)
+"bCf" = (/obj/machinery/requests_console{announcementConsole = 1; department = "Quartermaster's Desk"; departmentType = 5; name = "Quartermaster RC"; pixel_x = -30; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/simulated/floor,/area/quartermaster/qm)
 "bCg" = (/obj/structure/stool/bed/chair/office/dark,/obj/effect/landmark/start{name = "Quartermaster"},/turf/simulated/floor,/area/quartermaster/qm)
 "bCh" = (/obj/machinery/atmospherics/unary/vent_scrubber{on = 1; scrub_N2O = 0; scrub_Toxins = 0},/turf/simulated/floor,/area/quartermaster/qm)
 "bCi" = (/obj/item/device/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_x = 27},/obj/structure/disposalpipe/segment,/turf/simulated/floor,/area/quartermaster/qm)
