@@ -55,7 +55,8 @@ var/list/command_positions = list(
 	"Head of Security",
 	"Chief Engineer",
 	"Research Director",
-	"Chief Medical Officer"
+	"Chief Medical Officer",
+	"Quartermaster"
 )
 
 
@@ -82,6 +83,12 @@ var/list/science_positions = list(
 	"Roboticist",
 	"Xenobiologist"
 )
+//Hypatia Edit
+var/list/cargo_positions = list(
+	"Quartermaster",
+	"Cargo Technician",
+	"Shaft Miner"
+)
 
 //BS12 EDIT
 var/list/civilian_positions = list(
@@ -91,14 +98,10 @@ var/list/civilian_positions = list(
 	"Chef",
 	"Janitor",
 	"Librarian",
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner",
 	"Lawyer",
 	"Chaplain",
 	"Assistant"
 )
-
 
 var/list/security_positions = list(
 	"Head of Security",
