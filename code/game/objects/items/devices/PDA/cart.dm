@@ -115,11 +115,22 @@
 				radio = new /obj/item/radio/integrated/signal(src)
 
 
+	cargo
+		name = "Space Parts & Space Vendors Cartridge"
+		desc = "Perfect for the Cargo Tech on the go!"
+		icon_state = "cart-q"
+		access_quartermaster = 1
+
+		New()
+			..()
+			spawn(5)
+				radio = new /obj/item/radio/integrated/mule(src)
 
 	quartermaster
-		name = "Space Parts & Space Vendors Cartridge"
+		name = "Space Parts & Space Vendors Pro Cartridge"
 		desc = "Perfect for the Quartermaster on the go!"
 		icon_state = "cart-q"
+		access_status_display = 1
 		access_quartermaster = 1
 
 		New()
@@ -136,7 +147,6 @@
 		name = "HumanResources9001"
 		icon_state = "cart-h"
 		access_status_display = 1
-		access_quartermaster = 1
 		access_janitor = 1
 		access_security = 1
 
