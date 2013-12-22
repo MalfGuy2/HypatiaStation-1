@@ -370,7 +370,7 @@ datum/preferences
 
 		user << browse(dat, "window=preferences;size=560x580")
 
-	proc/SetChoices(mob/user, limit = 16, list/splitJobs = list("Chief Medical Officer"), width = 550, height = 550)
+	proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Medical Officer"), width = 550, height = 550)
 		if(!job_master)
 			return
 
