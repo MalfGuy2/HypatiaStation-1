@@ -51,6 +51,13 @@
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/headset_sec
 
+/obj/item/device/radio/headset/headset_secpara
+	name = "security radio headset"
+	desc = "This is used by the medic for security. Channels are as follows: :s - Security, :m - Medical."
+	icon_state = "sec_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/headset_secpara
+
 /obj/item/device/radio/headset/headset_eng
 	name = "engineering radio headset"
 	desc = "When the engineers wish to chat like girls. To access the engineering channel, use :e. "

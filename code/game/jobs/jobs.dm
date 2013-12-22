@@ -11,7 +11,7 @@ var/const/ENGINEER			=(1<<6)
 var/const/ATMOSTECH			=(1<<7)
 var/const/AI				=(1<<8)
 var/const/CYBORG			=(1<<9)
-
+var/const/SECPARA			=(1<<10)
 
 var/const/MEDSCI			=(1<<1)
 
@@ -43,6 +43,7 @@ var/const/CHAPLAIN			=(1<<10)
 var/const/CLOWN				=(1<<11)
 var/const/MIME				=(1<<12)
 var/const/ASSISTANT			=(1<<13)
+var/const/MININGFOREMAN		=(1<<14)
 
 
 var/list/assistant_occupations = list(
@@ -72,7 +73,8 @@ var/list/medical_positions = list(
 	"Medical Doctor",
 	"Geneticist",
 	"Psychiatrist",
-	"Chemist"
+	"Chemist",
+	"Security Paramedic"
 )
 
 
@@ -87,6 +89,7 @@ var/list/science_positions = list(
 var/list/cargo_positions = list(
 	"Quartermaster",
 	"Cargo Technician",
+	"Mining Foreman",
 	"Shaft Miner"
 )
 
@@ -107,7 +110,8 @@ var/list/security_positions = list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Security Officer"
+	"Security Officer",
+	"Security Paramedic"
 )
 
 
