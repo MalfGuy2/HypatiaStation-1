@@ -626,6 +626,8 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define R_PERMISSIONS 32768
 #define R_MAXPERMISSION 32768
 
+#define R_HOST 65536
+
 //Preference toggles
 #define SOUND_ADMINHELP	1
 #define SOUND_MIDI		2
