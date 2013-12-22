@@ -546,6 +546,7 @@ var/global/floorIsLava = 0
 		<br><A href='?src=\ref[src];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='?src=\ref[src];vsc=plasma'>Edit Plasma Settings</A><br>
 		<A href='?src=\ref[src];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='?src=\ref[src];secretsadmin=change_sec'>Change Security Level</A><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")

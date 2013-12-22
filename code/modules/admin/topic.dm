@@ -2265,6 +2265,24 @@
 		switch(href_list["secretsadmin"])
 			if("clear_bombs")
 				//I do nothing
+			if("change_sec")
+				//var/level = alert(usr, "What would you like to change the security level to?", "Security Level", "Code Green", "Code Blue", "Code Red", "Code Delta", "Cancel"))
+				var/level = input("Please select security level:","Security Level") as null|anything in list("Code Green", "Code Blue", "Code Red", "Code Delta", "Cancel")
+				//Stupid BYOND...  Alert can only take 6 args.
+				switch(level)
+					if("Code Green")
+						set_security_level(SEC_LEVEL_GREEN)
+					if("Code Blue")
+						set_security_level(SEC_LEVEL_BLUE)
+					if("Code Red")
+						set_security_level(SEC_LEVEL_RED)
+					if("Code Delta")
+						set_security_level(SEC_LEVEL_DELTA)
+					if("Cancel")
+						return
+
+				log_admin("[usr.key] has changed the security level to [level].")
+				message_admins("[usr.key] has changed the security level to [level].")
 			if("list_bombers")
 				var/dat = "<B>Bombing List<HR>"
 				for(var/l in bombers)
