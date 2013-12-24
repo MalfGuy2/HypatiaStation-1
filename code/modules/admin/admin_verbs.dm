@@ -6,7 +6,8 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
-	/client/proc/check_antagonists		/*shows all antags*/
+	/client/proc/check_antagonists,		/*shows all antags*/
+	/client/proc/shift_change            /*Starts a Shift Change*/
 //	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
