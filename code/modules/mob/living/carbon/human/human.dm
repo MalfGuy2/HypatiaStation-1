@@ -7,6 +7,8 @@
 	var/list/hud_list = list()
 	var/datum/species/species //Contains icon generation and language information, set during New().
 
+	var/stealth = 0 // Moved this here to make huds work.
+
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
 	status_flags = GODMODE|CANPUSH
