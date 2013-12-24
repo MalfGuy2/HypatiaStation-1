@@ -6,3 +6,4 @@
 *.dll
 data
 config
+*.db
