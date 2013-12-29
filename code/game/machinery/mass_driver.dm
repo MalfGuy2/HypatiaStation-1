@@ -23,7 +23,8 @@
 		var/O_limit
 		var/atom/target = get_edge_target_turf(src, dir)
 		for(var/atom/movable/O in loc)
-			O.anchored = 0
+			if(!istype(O, /obj/machinery/mass_driver))
+				O.anchored = 0
 			O_limit++
 			if(O_limit >= 20)
 				for(var/mob/M in hearers(src, null))
