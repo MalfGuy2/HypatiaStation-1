@@ -49,7 +49,7 @@
 	var/msg = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
-	if(holder)
+	if(holder && holder.rank != "Donor")
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
 				msg += "\t[C] is a [C.holder.rank]"
