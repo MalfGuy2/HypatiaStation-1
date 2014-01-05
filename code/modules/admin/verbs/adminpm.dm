@@ -36,12 +36,14 @@
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
 /client/proc/cmd_admin_pm(var/client/C, var/msg)
+	/* Keeping this short term. Remove whenever - Akai
 	if(src.holder.rights & R_DONOR)
 		if(src.holder.rights & R_ADMIN || src.holder.rights & R_MOD)
 		else
 			if(!C.holder)
 				src << "<font color='red'>Error: You don't have permission to do that!</color>"
 				return
+	*/
 	if(prefs.muted & MUTE_ADMINHELP)
 		src << "<font color='red'>Error: Private-Message: You are unable to use PM-s (muted).</font>"
 		return
@@ -82,7 +84,7 @@
 	var/recieve_pm_type = "Player"
 
 
-	if(holder)
+	if(src.holder.rights & R_ADMIN || src.holder.rights & R_MOD)
 		//mod PMs are maroon
 		//PMs sent from admins and mods display their rank
 		if(holder)
@@ -93,7 +95,7 @@
 			send_pm_type = holder.rank + " "
 			recieve_pm_type = holder.rank
 
-	else if(!C.holder)
+	else if(!(C.holder.rights & R_ADMIN || C.holder.rights & R_MOD))
 		src << "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>"
 		return
 
