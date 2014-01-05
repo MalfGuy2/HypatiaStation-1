@@ -249,7 +249,8 @@ var/list/admin_verbs_donor = list(
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
 	/datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
 	/client/proc/cmd_admin_say,
-	/client/proc/dsay
+	/client/proc/dsay,
+	/client/proc/admin_ghost
 )
 /client/proc/add_admin_verbs()
 	if(holder)
