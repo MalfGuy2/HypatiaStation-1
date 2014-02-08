@@ -77,7 +77,7 @@
 
 	dat = {"Engineering notes on single-stage Supermatter engine,</br>
 			-Waleed Asad</br>
-	
+
 			Station,</br>
 			Exodus</br>
 
@@ -706,7 +706,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://baystation12.net/wiki/index.php?title=Space_law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='97%' src="http://hypatiastation.net/wiki/index.php?title=Space_law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>
 
