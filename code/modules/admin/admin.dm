@@ -1070,6 +1070,31 @@ var/global/floorIsLava = 0
 	if(istype(H))
 		H.regenerate_icons()
 
+
+/client/proc/cmd_mob_weaken(var/mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+    set category = "Admin"
+    set name = "Weaken"
+    set desc = "Anti griffin', weaken!"
+
+    M.SetWeakened(200)
+
+    log_admin("[key_name(usr)] weakened [key_name(M)].")
+    message_admins("\blue [key_name(usr)] weakened [key_name(M)].",1)
+    return
+
+/client/proc/cmd_mob_unweaken(var/mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+    set category = "Admin"
+    set name = "Unweaken"
+    set desc = "No griffin' let's get out."
+
+
+    M.SetWeakened(0)
+
+
+    log_admin("[key_name(usr)] unweakened [key_name(M)].")
+    message_admins("\blue [key_name(usr)] unweakened [key_name(M)].",1)
+    return
+
 //
 //
 //ALL DONE

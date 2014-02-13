@@ -71,7 +71,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/check_customitem_activity,
 	/client/proc/man_up,
 	/client/proc/global_man_up,
-	/client/proc/response_team // Response Teams admin verb
+	/client/proc/response_team, // Response Teams admin verb
+	/client/proc/cmd_mob_weaken,
+	/client/proc/cmd_mob_unweaken
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
