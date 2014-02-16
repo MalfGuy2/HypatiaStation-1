@@ -23,6 +23,8 @@
 		var/O_limit
 		var/atom/target = get_edge_target_turf(src, dir)
 		for(var/atom/movable/O in loc)
+			if(!istype(O, /obj/machinery/mass_driver))
+				O.anchored = 0
 			if(!O.anchored||istype(O, /obj/mecha))//Mechs need their launch platforms.
 				O_limit++
 				if(O_limit >= 20)
@@ -32,7 +34,7 @@
 				use_power(500)
 				spawn( 0 )
 					O.throw_at(target, drive_range * power, power)
-		flick("mass_driver1", src)
+			flick("mass_driver1", src)
 		return
 
 	emp_act(severity)

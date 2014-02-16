@@ -133,7 +133,7 @@ var/global/floorIsLava = 0
 				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
 				<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
 				<A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
-				<A href='?src=\ref[src];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
+				<A href='?src=\ref[src];simplemake=happykitten;mob=\ref[M]'>Happy Kitten</A> |
 				<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
 				<A href='?src=\ref[src];simplemake=ian;mob=\ref[M]'>Ian</A> |
 				<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> |
@@ -546,6 +546,7 @@ var/global/floorIsLava = 0
 		<br><A href='?src=\ref[src];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='?src=\ref[src];vsc=plasma'>Edit Plasma Settings</A><br>
 		<A href='?src=\ref[src];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='?src=\ref[src];secretsadmin=change_sec'>Change Security Level</A><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")

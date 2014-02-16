@@ -1259,6 +1259,11 @@ mob/living/carbon/human/yank_out_object()
 
 	species = all_species[new_species]
 
+	if(species.language)
+		var/datum/language/L = all_languages[species.language]
+		if(L)
+			languages += L
+
 	spawn(0)
 		update_icons()
 
