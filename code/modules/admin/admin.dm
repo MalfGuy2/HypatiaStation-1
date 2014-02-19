@@ -17,8 +17,8 @@ var/global/floorIsLava = 0
 	for(var/client/C in admins)
 		if(R_ADMIN || R_MOD & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
-			var/msg = rendered
-			C << msg
+				var/msg = rendered
+				C << msg
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
