@@ -8,14 +8,14 @@ var/global/floorIsLava = 0
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if(R_MOD || R_ADMIN & C.holder.rights)
 			C << msg
 
-/proc/msg_admin_attack(var/text) //Toggleable Attack Messages
-	log_attack(text)
+/proc/msg_admin_attack(var/text, var/attacker as mob, var/victim as mob) //Toggleable Attack Messages
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
+	log_adminwarn(rendered)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if(R_ADMIN || R_MOD & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
 				C << msg
@@ -1069,6 +1069,31 @@ var/global/floorIsLava = 0
 
 	if(istype(H))
 		H.regenerate_icons()
+
+
+/client/proc/cmd_mob_weaken(var/mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+    set category = "Admin"
+    set name = "Weaken"
+    set desc = "Anti griffin', weaken!"
+
+    M.SetWeakened(200)
+
+    log_admin("[key_name(usr)] weakened [key_name(M)].")
+    message_admins("\blue [key_name(usr)] weakened [key_name(M)].",1)
+    return
+
+/client/proc/cmd_mob_unweaken(var/mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+    set category = "Admin"
+    set name = "Unweaken"
+    set desc = "No griffin' let's get out."
+
+
+    M.SetWeakened(0)
+
+
+    log_admin("[key_name(usr)] unweakened [key_name(M)].")
+    message_admins("\blue [key_name(usr)] unweakened [key_name(M)].",1)
+    return
 
 //
 //
