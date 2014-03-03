@@ -787,6 +787,10 @@ proc/process_ghost_teleport_locs()
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
 
+/area/crew_quarters/sauna
+	name = "\improper Sauna"
+	icon_state = "Sleep"
+
 /area/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
 	icon_state = "toilet"
@@ -821,6 +825,10 @@ proc/process_ghost_teleport_locs()
 
 /area/crew_quarters/locker
 	name = "\improper Locker Room"
+	icon_state = "locker"
+
+/area/crew_quarters/bunker
+	name = "\improper Bunker"
 	icon_state = "locker"
 
 /area/crew_quarters/locker/locker_toilet
@@ -1056,6 +1064,23 @@ proc/process_ghost_teleport_locs()
 	icon_state = "medbay3"
 	music = 'sound/ambience/signal.ogg'
 
+/area/medical/medbay4
+	name = "\improper Medbay"
+	icon_state = "medbay"
+	music = 'sound/ambience/signal.ogg'
+
+/area/medical/main_storage
+	name = "\improper Medbay Storage"
+	icon_state = "medbay"
+
+/area/medical/icu
+	name = "\improper Intensive Care Unit"
+	icon_state = "medbay"
+
+/area/medical/dormitories
+	name = "\improper Medbay Dormitories"
+	icon_state = "medbay"
+
 
 /area/medical/biostorage
 	name = "\improper Secondary Storage"
@@ -1130,7 +1155,11 @@ proc/process_ghost_teleport_locs()
 	icon_state = "chem"
 
 /area/medical/surgery
-	name = "\improper Surgery"
+	name = "\improper Operating Theatre One"
+	icon_state = "surgery"
+
+/area/medical/surgery1
+	name = "\improper Operating Theatre Two"
 	icon_state = "surgery"
 
 /area/medical/surgeryobs
@@ -1161,6 +1190,10 @@ proc/process_ghost_teleport_locs()
 
 /area/security/main
 	name = "\improper Security Office"
+	icon_state = "security"
+
+/area/security/garage
+	name = "\improper Military Exosuit Garage"
 	icon_state = "security"
 
 /area/security/lobby
@@ -1244,8 +1277,8 @@ proc/process_ghost_teleport_locs()
 	name = "\improper Vacant Office"
 	icon_state = "security"
 
-/area/security/vacantoffice2
-	name = "\improper Vacant Office"
+/area/security/headdorms
+	name = "\improper Head Dormitories"
 	icon_state = "security"
 
 /area/quartermaster
@@ -1315,7 +1348,7 @@ proc/process_ghost_teleport_locs()
 	icon_state = "toxlab"
 
 /area/toxins/storage
-	name = "\improper Toxins Storage"
+	name = "\improper Science Storage"
 	icon_state = "toxstorage"
 
 /area/toxins/test_area
@@ -1523,16 +1556,8 @@ proc/process_ghost_teleport_locs()
 	name = "EVA Storage"
 	icon_state = "eva"
 
-/area/ai_monitored/storage/engineeringeva
-	name = "Engineering EVA Storage"
-	icon_state = "eva"
-
 /area/ai_monitored/storage/secure
 	name = "Secure Storage"
-	icon_state = "storage"
-
-/area/ai_monitored/storage/armory
-	name = "Armory"
 	icon_state = "storage"
 
 /area/ai_monitored/storage/emergency
