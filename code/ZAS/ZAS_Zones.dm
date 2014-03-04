@@ -27,7 +27,6 @@ var/list/CounterDoorDirections = list(SOUTH,EAST) //Which directions doors turfs
 	var/interactions_with_unsim = 0
 	var/progress = "nothing"
 
-
 //CREATION AND DELETION
 /zone/New(turf/start)
 	. = ..()
@@ -631,8 +630,21 @@ proc/ShareSpace(datum/gas_mixture/A, list/unsimulated_tiles, dbg_output)
 
 	return abs(old_pressure - A.return_pressure())
 
-
+// Pulled this from bay updates. Kb might appreciate the science -- Marajin
 proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
+
+	//This implements a simplistic version of the Stefan-Boltzmann law.
+	var/energy_delta = ((A.temperature - B.temperature) ** 4) * 5.6704e-8 * connecting_tiles * 2.5
+	var/maximum_energy_delta = max(0, min(A.temperature * A.heat_capacity() * A.group_multiplier, B.temperature * B.heat_capacity() * B.group_multiplier))
+	if(maximum_energy_delta > abs(energy_delta))
+		if(energy_delta < 0)
+			maximum_energy_delta *= -1
+		energy_delta = maximum_energy_delta
+
+	A.temperature -= energy_delta / (A.heat_capacity() * A.group_multiplier)
+	B.temperature += energy_delta / (B.heat_capacity() * B.group_multiplier)
+
+	/* This was bad an I feel bad.
 	//Shares a specific ratio of gas between mixtures using simple weighted averages.
 	var
 		//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
@@ -655,7 +667,7 @@ proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
 
 	A.temperature = max(0, (A.temperature - temp_avg) * (1- (ratio / max(1,A.group_multiplier)) ) + temp_avg )
 	B.temperature = max(0, (B.temperature - temp_avg) * (1- (ratio / max(1,B.group_multiplier)) ) + temp_avg )
-
+	*/
 
   ///////////////////
  //Zone Rebuilding//
