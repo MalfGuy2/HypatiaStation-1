@@ -527,6 +527,13 @@
 	icon_state = "arjun_chopra"
 	item_state = "arjun_chopra"
 
+/obj/item/clothing/glasses/monocle/electronic    //bean-dip's custom item. -- Dalekfodder // Naughty Dalek, it goes here -- Marajin
+	name = "Electronic Eye"
+	desc = "This is an electronic eye made to fit, and appear similar to a Soghun's eye. From time to time, it blinks red and blue."
+	icon_state = "electronic-eye_Ebele"
+	item_state = "electronic-eye_Ebele"
+	species_restricted = list("Unathi")  // Don't forget to change the description if you want this removed.
+
 //////////// Hats ////////////
 
 /obj/item/clothing/head/secsoft/fluff/swatcap //deusdactyl: James Girard
@@ -626,7 +633,7 @@
 
 /obj/item/clothing/under/fluff/milo_hachert //Field Dress Uniform - Milo Hachert - Commissar_Drew
 	name = "field dress uniform"
-	desc = "A uniform jacket, its buttons polished to a shine, coupled with a dark pair of trousers. 'Hachert' is embroidered upon the jacket’s shoulder bar."
+	desc = "A uniform jacket, its buttons polished to a shine, coupled with a dark pair of trousers. 'Hachert' is embroidered upon the jacket?s shoulder bar."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "milohachert"
 	item_state = "milohachert"
