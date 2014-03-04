@@ -317,9 +317,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	var/mob/dead/observer/M = src
-	if(jobban_isbanned(M, "AntagHUD"))
-		src << "\red <B>You have been banned from using this feature</B>"
-		return
 	if(M.antagHUD)
 		M.antagHUD = 0
 		src << "\blue <B>AntagHUD Disabled</B>"
