@@ -49,6 +49,8 @@
 		for(var/mob/living/carbon/human/patient in view(get_turf(M)))
 			if(M.see_invisible < patient.invisibility)
 				continue
+			if(patient.stealth) // Don't let huds see stealthed people.
+				continue
 			var/foundVirus = 0
 			for(var/datum/disease/D in patient.viruses)
 				if(!D.hidden[SCANNER])
@@ -98,6 +100,8 @@
 	var/image/holder
 	for(var/mob/living/carbon/human/perp in view(get_turf(M)))
 		if(M.see_invisible < perp.invisibility)
+			continue
+		if(perp.stealth) // Don't let huds see stealthed people.
 			continue
 		if(!C) continue
 		var/perpname = perp.name

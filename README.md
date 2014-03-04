@@ -1,17 +1,17 @@
-# baystation12
+# HypatiaStation
 
-[Website](http://baystation12.net/) - [Code](http://github.com/Baystation12/Baystation12/) - [IRC](http://baystation12.net/forums/viewtopic.php?f=12&t=5088)
+[Website](http://hypatiastation.net/) - [Code](https://github.com/HypatiaStation/HypatiaStation/)
 
 ---
 
 ### GETTING THE CODE
 The simplest way to obtain the code is using the github .zip feature.
 
-Click [here](https://github.com/Baystation12/Baystation12/archive/master.zip) to get the latest code as a .zip file, then unzip it to wherever you want.
+Click [here](https://github.com/HypatiaStation/HypatiaStation/archive/master.zip) to get the latest code as a .zip file, then unzip it to wherever you want.
 
 The more complicated and easier to update method is using git.  You'll need to download git or some client from [here](http://git-scm.com/).  When that's installed, right click in any folder and click on "Git Bash".  When that opens, type in:
 
-    git clone https://github.com/Baystation12/Baystation12.git
+    git clone https://github.com/HypatiaStation/HypatiaStation.git
 
 (hint: hold down ctrl and press insert to paste into git bash)
 
@@ -38,6 +38,10 @@ You'll also want to edit admins.txt to remove the default admins and add your ow
 where the BYOND key must be in lowercase and the admin rank must be properly capitalised.  There are a bunch more admin ranks, but these two should be enough for most servers, assuming you have trustworthy admins.
 
 Finally, to start the server, run Dream Daemon and enter the path to your compiled baystation12.dmb file.  Make sure to set the port to the one you  specified in the config.txt, and set the Security box to 'Trusted'.  Then press GO and the server should start up and be ready to join.
+
+## Hint:
+
+The only required files (once compiled) are the baystation12.dmb, baystation12.rsc and the entirety of the config directory.  The rest if only required to compile the source code.  It is suggested to keep work directory for the source code and seperate directory for the executable and configuration files.
 
 ---
 
@@ -73,3 +77,9 @@ The SQL backend for the library and stats tracking requires a MySQL server.  You
 ### IRC Bot Setup
 
 Included in the repo is an IRC bot capable of relaying adminhelps to a specified IRC channel/server (thanks to Skibiliano).  Instructions for bot setup are included in the /bot/ folder along with the bot/relay script itself.
+
+---
+
+### Attribution
+
+This document is a modified version of that released by [Baystation12](http://baystation12.net) under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.

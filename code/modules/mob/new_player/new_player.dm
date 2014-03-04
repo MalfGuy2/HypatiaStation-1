@@ -286,10 +286,12 @@
 		job_master.AssignRole(src, rank, 1)
 
 		var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
-		job_master.EquipRank(character, rank, 1)					//equips the human
-		EquipCustomItems(character)
+
+		//Rearranged this block to do the move first. EquipRank might be crashing this proc if rank = Cyborg.
 		character.loc = pick(latejoin)
 		character.lastarea = get_area(loc)
+		job_master.EquipRank(character, rank, 1)					//equips the human
+		EquipCustomItems(character)
 
 		ticker.mode.latespawn(character)
 

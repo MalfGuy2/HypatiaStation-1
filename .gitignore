@@ -3,5 +3,7 @@
 *.rsc
 *.dmb
 *.lk
-/data/admins.txt
-/config
+*.dll
+data
+config
+*.db

@@ -606,26 +606,27 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
-#define R_BUILDMODE		1
-#define R_ADMIN			2
-#define R_BAN			4
-#define R_FUN			8
-#define R_SERVER		16
-#define R_DEBUG			32
-#define R_POSSESS		64
-#define R_PERMISSIONS	128
-#define R_STEALTH		256
-#define R_REJUVINATE	512
-#define R_VAREDIT		1024
-#define R_SOUNDS		2048
-#define R_SPAWN			4096
-#define R_MOD			8192
-#define R_DONOR			16348
-#define R_ZAS			32768
+#define R_REJUVINATE 1
+#define R_BUILDMODE 2
+#define R_POSSESS 4
+#define R_STEALTH 8
+#define R_SOUNDS 16 //sort of singe-tasked
+#define R_SPAWN 32
+#define R_VAREDIT 64
+#define R_DONOR 128//lowest "rank"/perm
+#define R_MOD 256//MOD > DONOR
+#define R_BAN 512
+#define R_ADMIN 1024
+#define R_FUN 2048
+#define R_SERVER 4096
+#define R_DEBUG 8192
+#define R_ZAS 16384
+//#define R_HIGHDEBUG 16384
+//#define R_PERMISSIONS 32768
+#define R_PERMISSIONS 32768
+#define R_MAXPERMISSION 32768
 
-#define R_MAXPERMISSION 32768 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
-
-#define R_HOST			65535
+#define R_HOST 65536
 
 //Preference toggles
 #define SOUND_ADMINHELP	1

@@ -122,6 +122,15 @@
 				if(emergency_shuttle.online)
 					post_status("shuttle")
 			src.state = STATE_DEFAULT
+		if("crewtransfer")
+			src.state = STATE_DEFAULT
+			if(src.authenticated)
+				src.state = STATE_CREWTRANSFER
+		if("crewtransfer2")
+			if(src.authenticated)
+				init_shift_change(usr)
+				if(emergency_shuttle.online)
+					post_status("shuttle")
 		if("cancelshuttle")
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
@@ -224,6 +233,10 @@
 		if("ai-callshuttle2")
 			call_shuttle_proc(usr)
 			src.aistate = STATE_DEFAULT
+		if("ai-crewtransfer")
+			src.aistate = STATE_CREWTRANSFER
+		if("ai-crewtransfer2")
+			init_shift_change(usr)
 		if("ai-messagelist")
 			src.aicurrmsg = 0
 			src.aistate = STATE_MESSAGELIST
@@ -314,7 +327,7 @@
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Shuttle Call</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Shuttle</A> \]"
-
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=crewtransfer'>Initiate Crew Transfer</A> \]"
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set Status Display</A> \]"
 			else
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
@@ -323,6 +336,8 @@
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_CANCELSHUTTLE)
 			dat += "Are you sure you want to cancel the shuttle? \[ <A HREF='?src=\ref[src];operation=cancelshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
+		if(STATE_CREWTRANSFER)
+			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=crewtransfer2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
 			for(var/i = 1; i<=src.messagetitle.len; i++)
@@ -379,10 +394,13 @@
 		if(STATE_DEFAULT)
 			if(emergency_shuttle.location==0 && !emergency_shuttle.online)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Shuttle</A> \]"
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-crewtransfer'>Initiate Crew Transfer</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set Status Display</A> \]"
 		if(STATE_CALLSHUTTLE)
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=ai-callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=ai-main'>Cancel</A> \]"
+		if(STATE_CREWTRANSFER)
+			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=ai-crewtransfer2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
 			for(var/i = 1; i<=src.messagetitle.len; i++)
@@ -477,8 +495,8 @@
 			user << "Centcom will not allow the shuttle to be called. Consider all contracts terminated."
 			return
 
-		if(world.time < 54000) // 30 minute grace period to let the game get going
-			user << "The shuttle is refueling. Please wait another [round((54000-world.time)/600)] minutes before trying again."//may need to change "/600"
+		if(world.time < 135000) // cant call the transfer until 15:45
+			user << "It is not crew transfer time. [round((135000-world.time)/600)] minutes before trying again."//may need to change "/600"
 			return
 
 		if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "sandbox")
@@ -494,6 +512,7 @@
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
 	captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
+	world << sound('sound/AI/crewtransfer2.ogg')
 
 	return
 
