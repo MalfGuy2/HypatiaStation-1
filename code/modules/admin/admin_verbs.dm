@@ -6,11 +6,11 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
-	/client/proc/check_antagonists,		/*shows all antags*/
-	/client/proc/shift_change            /*Starts a Shift Change*/
+	/client/proc/check_antagonists		/*shows all antags*/
 //	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
+	/client/proc/shift_change,            /*Starts a Shift Change*/
 	/client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
 	/client/proc/cmd_banhammer,			//BANHAMMER!!!!!! --Numbers
@@ -71,7 +71,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/check_customitem_activity,
 	/client/proc/man_up,
 	/client/proc/global_man_up,
-	/client/proc/response_team // Response Teams admin verb
+	/client/proc/response_team, // Response Teams admin verb
+	/client/proc/cmd_mob_weaken,
+	/client/proc/cmd_mob_unweaken
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -243,7 +245,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message, 	/*send an message to somebody as a 'voice in their head'*/
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
 	/datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
-	/client/proc/cmd_admin_say
+	/client/proc/cmd_admin_say,
+	/client/proc/shift_change            /*Starts a Shift Change*/
 	)
 var/list/admin_verbs_donor = list(
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/

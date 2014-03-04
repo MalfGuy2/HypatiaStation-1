@@ -46,14 +46,18 @@
 	set category = "Admin"
 	set name = "Adminwho"
 
-	var/msg = ""
+
 	var/num_mods_online = 0
 	var/num_admins_online = 0
-	if(holder && holder.rank != "Donor")
-		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
-				msg += "\t[C] is a [C.holder.rank]"
+	var/num_custom_online = 0
+	var/msg = ""  // admins
+	var/msg2 = ""  // mods
+	var/msg3 = ""  // donors/custom -- will be edited -- dalekfodder
 
+	for(var/client/C in admins)
+		if(R_ADMIN & C.holder.rights)
+			msg += "\t[C] is a [C.holder.rank]"
+			if(holder)
 				if(C.holder.fakekey)
 					msg += " <i>(as [C.holder.fakekey])</i>"
 
@@ -66,11 +70,49 @@
 
 				if(C.is_afk())
 					msg += " (AFK)"
-				msg += "\n"
+			msg += "\n"
 
-				num_admins_online++
-			else
-				num_mods_online++
+			num_admins_online++
+		else if(R_MOD & C.holder.rights)
+			msg2 += "\t[C] is a [C.holder.rank]"
+			if(holder)
+				if(C.holder.fakekey)
+					msg2 += " <i>(as [C.holder.fakekey])</i>"
+
+				if(isobserver(C.mob))
+					msg2 += " - Observing"
+				else if(istype(C.mob,/mob/new_player))
+					msg2 += " - Lobby"
+				else
+					msg2 += " - Playing"
+
+				if(C.is_afk())
+					msg2 += " (AFK)"
+			msg2 += "\n"
+
+			num_mods_online++
+
+		else
+			msg3 += "\t[C] is a [C.holder.rank]"
+			if(holder)
+				if(C.holder.fakekey)
+					msg3 += " <i>(as [C.holder.fakekey])</i>"
+
+				if(isobserver(C.mob))
+					msg3 += " - Observing"
+				else if(istype(C.mob,/mob/new_player))
+					msg3 += " - Lobby"
+				else
+					msg3 += " - Playing"
+
+				if(C.is_afk())
+					msg3 += " (AFK)"
+			msg3 += "\n"
+
+			num_custom_online++
+
+
+/*
 	else
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
@@ -79,11 +121,18 @@
 					num_admins_online++
 			else
 				num_mods_online++
+*/
 
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
-	msg += "<b>There are also [num_mods_online] moderators online.</b> To view online moderators, type 'modwho'\n"
-	src << msg
+	msg = "<b>Current Admins online: ([num_admins_online]):</b>\n" + msg
+	msg2= "<b>Current Moderators online: ([num_mods_online]):</b>\n" + msg2
+	msg3= "<b>Current Custom Ranks online: ([num_custom_online]):</b>\n" + msg3
 
+	// msg += "<b>There are also [num_mods_online] moderators online.</b> To view online moderators, type 'modwho'\n"
+	src << msg +"<BR>"+ msg2 +"<BR>"+ msg3
+
+
+
+/*
 /client/verb/modwho()
 	set category = "Admin"
 	set name = "Modwho"
@@ -119,3 +168,4 @@
 	msg = "<b>Current Moderators ([num_mods_online]):</b>\n" + msg
 	msg += "<b>There are also [num_admins_online] admins online.</b> To view online admins, type 'adminwho'\n"
 	src << msg
+*/

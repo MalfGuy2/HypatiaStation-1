@@ -52,7 +52,7 @@ datum/shuttle_controller/proc/shuttlealert(var/X)
 datum/shuttle_controller/proc/recall()
 	if(direction == 1)
 		var/timeleft = timeleft()
-		if(alert == 0)
+		if(alert == 0) // Thank god. This var exists. -- Dalekfodder
 			if(timeleft >= 600)
 				return
 			captain_announce("The emergency shuttle has been recalled.")
@@ -63,8 +63,17 @@ datum/shuttle_controller/proc/recall()
 				if(istype(A, /area/hallway))
 					A.readyreset()
 			return
-		else //makes it possible to send shuttle back.
-			captain_announce("The shuttle has been recalled.")
+		else if(alert == 1) // Thank god. This var exists.
+			captain_announce("The crew transfer shuttle has been recalled.")
+			world << sound('sound/AI/shuttlerecall2.ogg')
+			setdirection(-1)
+			online = 1
+			for(var/area/A in world)
+				if(istype(A, /area/hallway))
+					A.readyreset()
+			return
+		else
+			captain_announce("The shuttle has been recalled.") // keeping this to avoid bugs.
 			setdirection(-1)
 			online = 1
 			alert = 0 // set alert back to 0 after an admin recall
@@ -284,9 +293,13 @@ datum/shuttle_controller/emergency_shuttle/process()
 				start_location.move_contents_to(end_location)
 				settimeleft(SHUTTLELEAVETIME)
 				//send2irc("Server", "The Emergency Shuttle has docked with the station.")
-				captain_announce("The Emergency Shuttle has docked with the station. You have [round(timeleft()/60,1)] minutes to board the Emergency Shuttle.")
-				world << sound('sound/AI/shuttledock.ogg')
+				if(alert == 0)
+					captain_announce("The Emergency Shuttle has docked with the station. You have [round(timeleft()/60,1)] minutes to board the Emergency Shuttle.")
+					world << sound('sound/AI/shuttledock.ogg')
 
+				else if(alert == 1)
+					captain_announce("The Crew Transfer Shuttle has docked with the station. You have [round(timeleft()/60,1)] minutes to board the Crew Transfer Shuttle.")
+					world << sound('sound/AI/shuttledock2.ogg')
 				return 1
 
 		if(1)
