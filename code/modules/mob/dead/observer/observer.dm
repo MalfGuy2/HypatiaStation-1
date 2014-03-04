@@ -16,6 +16,8 @@
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
+	var/medHUD = 0
+	var/antagHUD = 0
 	universal_speak = 1
 	var/atom/movable/following = null
 /mob/dead/observer/New(mob/body)
@@ -312,21 +314,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
-	if(!config.antag_hud_allowed && !client.holder)
-		src << "\red Admins have disabled this for this round."
-		return
 	if(!client)
 		return
 	var/mob/dead/observer/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
 		src << "\red <B>You have been banned from using this feature</B>"
 		return
-	if(config.antag_hud_restricted && !M.has_enabled_antagHUD &&!client.holder)
-		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
-		if(response == "No") return
-		M.can_reenter_corpse = 0
-	if(!M.has_enabled_antagHUD && !client.holder)
-		M.has_enabled_antagHUD = 1
 	if(M.antagHUD)
 		M.antagHUD = 0
 		src << "\blue <B>AntagHUD Disabled</B>"
@@ -440,9 +433,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/analyze_air()
 	set name = "Analyze Air"
 	set category = "Ghost"
-	
+
 	if(!istype(usr, /mob/dead/observer)) return
-	
+
 	// Shamelessly copied from the Gas Analyzers
 	if (!( istype(usr.loc, /turf) ))
 		return
