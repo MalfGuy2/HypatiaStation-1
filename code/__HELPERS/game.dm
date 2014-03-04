@@ -209,7 +209,7 @@
 		if(M)
 			var/turf/ear = get_turf(M)
 			if(ear)
-				if(speaker_coverage[ear])
+				if(speaker_coverage[ear] || (istype(M, /mob/dead/observer) && (M.client)) // Ghosts can hear radios too
 					. |= M
 	return .
 
