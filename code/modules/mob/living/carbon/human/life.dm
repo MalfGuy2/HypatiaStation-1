@@ -105,7 +105,7 @@
 	handle_environment(environment)
 
 	//Status updates, death etc.
-	handle_regular_status_updates()		//TODO: optimise ~Carn
+	handle_regular_status_updates()		//TODO: optimise ~Carn  NO SHIT ~Ccomp
 	update_canmove()
 
 	//Update our name based on whether our face is obscured/disfigured
@@ -220,12 +220,13 @@
 			if((COLD_RESISTANCE in mutations) || (prob(1)))
 				heal_organ_damage(0,1)
 
-		if ((HULK in mutations) && health <= 25)
-			mutations.Remove(HULK)
-			update_mutations()		//update our mutation overlays
-			src << "\red You suddenly feel very weak."
-			Weaken(3)
-			emote("collapse")
+		// DNA2 - Gene processing.
+		// The HULK stuff that was here is now in the hulk gene.
+		for(var/datum/dna/gene/gene in dna_genes)
+			if(!gene.block)
+				continue
+			if(gene.is_active(src))
+				gene.OnMobLife(src)
 
 		if (radiation)
 			if (radiation > 100)
@@ -242,7 +243,7 @@
 					var/rads = radiation/25
 					radiation -= rads
 					nutrition += rads
-					heal_overall_damage(rads,rads)
+					adjustBruteLoss(-(rads))
 					adjustOxyLoss(-(rads))
 					adjustToxLoss(-(rads))
 					updatehealth()
@@ -286,7 +287,7 @@
 	proc/breathe()
 		if(reagents.has_reagent("lexorin")) return
 		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell)) return
-		if(species && species.flags & NO_BREATHE) return
+		if(species && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC)) return
 
 		var/datum/organ/internal/lungs/L = internal_organs["lungs"]
 		L.process()
@@ -324,7 +325,7 @@
 
 					breath = loc.remove_air(breath_moles)
 
-					if(istype(wear_mask, /obj/item/clothing/mask/gas))
+					if(istype(wear_mask, /obj/item/clothing/mask/gas) && breath)
 						var/obj/item/clothing/mask/gas/G = wear_mask
 						var/datum/gas_mixture/filtered = new
 
@@ -639,7 +640,15 @@
 			pressure_alert = 0
 		else if(adjusted_pressure >= species.hazard_low_pressure)
 			pressure_alert = -1
+
+			if(species && species.flags & IS_SYNTHETIC)
+				bodytemperature += 0.5 * TEMPERATURE_DAMAGE_COEFFICIENT //Synthetics suffer overheating in a vaccuum. ~Z
+
 		else
+
+			if(species && species.flags & IS_SYNTHETIC)
+				bodytemperature += 1 * TEMPERATURE_DAMAGE_COEFFICIENT
+
 			if( !(COLD_RESISTANCE in mutations))
 				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
 				pressure_alert = -2
@@ -866,7 +875,15 @@
 	*/
 
 	proc/handle_chemicals_in_body()
-		if(reagents) reagents.metabolize(src)
+
+		if(reagents && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
+			var/alien = 0 //Not the best way to handle it, but neater than checking this for every single reagent proc.
+			if(species && species.name == "Diona")
+				alien = 1
+			else if(species && species.name == "Vox")
+				alien = 2
+			reagents.metabolize(src,alien)
+
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
 			if(I.contaminated)
@@ -885,12 +902,15 @@
 			nutrition += light_amount
 			traumatic_shock -= light_amount
 
-			if(nutrition > 500)
-				nutrition = 500
-			if(light_amount > 2) //if there's enough light, heal
-				heal_overall_damage(1,1)
-				adjustToxLoss(-1)
-				adjustOxyLoss(-1)
+			if(species.flags & IS_PLANT)
+				if(nutrition > 500)
+					nutrition = 500
+				if(light_amount >= 3) //if there's enough light, heal
+					adjustBruteLoss(-(light_amount))
+					adjustToxLoss(-(light_amount))
+					adjustOxyLoss(-(light_amount))
+					//TODO: heal wounds, heal broken limbs.
+
 		if(dna && dna.mutantrace == "shadow")
 			var/light_amount = 0
 			if(isturf(loc))
@@ -955,10 +975,13 @@
 			dizziness = max(0, dizziness - 3)
 			jitteriness = max(0, jitteriness - 3)
 
-		handle_trace_chems()
+		if(!(species.flags & IS_SYNTHETIC)) handle_trace_chems()
 
 		var/datum/organ/internal/liver/liver = internal_organs["liver"]
 		liver.process()
+
+		var/datum/organ/internal/eyes/eyes = internal_organs["eyes"]
+		eyes.process()
 
 		updatehealth()
 
@@ -1032,7 +1055,7 @@
 						sleeping = max(sleeping-1, 0)
 				blinded = 1
 				stat = UNCONSCIOUS
-				if( prob(2) && health && !hal_crit && client )
+				if( prob(2) && health && !hal_crit )
 					spawn(0)
 						emote("snore")
 			else if(resting)
@@ -1043,6 +1066,13 @@
 				stat = CONSCIOUS
 				if(halloss > 0)
 					adjustHalLoss(-1)
+
+			if(embedded_flag && !(life_tick % 10))
+				var/list/E
+				E = get_visible_implants(0)
+				if(!E.len)
+					embedded_flag = 0
+
 
 			//Eyes
 			if(sdisabilities & BLIND)	//disabled-blind, doesn't get better on its own
@@ -1178,6 +1208,13 @@
 			see_in_dark = 8
 			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 			if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
+			if(client)
+				if(client.view != world.view)
+					if(locate(/obj/item/weapon/gun/energy/sniperrifle, contents))
+						var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in src
+						if(s.zoom)
+							s.zoom()
+
 		else
 			sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 			see_in_dark = species.darksight
@@ -1259,7 +1296,7 @@
 						if(2)	healths.icon_state = "health7"
 						else
 							//switch(health - halloss)
-							switch(100 - traumatic_shock)
+							switch(100 - ((species && species.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
 								if(100 to INFINITY)		healths.icon_state = "health0"
 								if(80 to 100)			healths.icon_state = "health1"
 								if(60 to 80)			healths.icon_state = "health2"
@@ -1334,10 +1371,6 @@
 				var/obj/item/clothing/glasses/welding/O = glasses
 				if(!O.up && tinted_weldhelh)
 					client.screen += global_hud.darkMask
-
-			if(eye_stat > 20)
-				if(eye_stat > 30)	client.screen += global_hud.darkMask
-				else				client.screen += global_hud.vimpaired
 
 			if(machine)
 				if(!machine.check_eye(src))		reset_view(null)
@@ -1423,7 +1456,7 @@
 	handle_shock()
 		..()
 		if(status_flags & GODMODE)	return 0	//godmode
-		if(analgesic) return // analgesic avoids all traumatic shock temporarily
+		if(analgesic || (species && species.flags & NO_PAIN)) return // analgesic avoids all traumatic shock temporarily
 
 		if(health < config.health_threshold_softcrit)// health 0 makes you immediately collapse
 			shock_stage = max(shock_stage, 61)
@@ -1472,7 +1505,10 @@
 			Weaken(20)
 
 	proc/handle_pulse()
+
 		if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
+
+		if(species && species.flags & NO_BLOOD) return PULSE_NONE //No blood, no pulse.
 
 		if(stat == DEAD)
 			return PULSE_NONE	//that's it, you're dead, nothing can influence your pulse
@@ -1495,6 +1531,15 @@
 			if(R.id in tachycardics)
 				if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 					temp++
+					break
+		for(var/datum/reagent/R in reagents.reagent_list) //To avoid using fakedeath
+			if(R.id in heartstopper)
+				temp = PULSE_NONE
+				break
+		for(var/datum/reagent/R in reagents.reagent_list) //Conditional heart-stoppage
+			if(R.id in cheartstopper)
+				if(R.volume >= R.overdose)
+					temp = PULSE_NONE
 					break
 
 		return temp

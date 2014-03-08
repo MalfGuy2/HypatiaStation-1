@@ -42,10 +42,9 @@
 	msg += "<b>Total Players: [length(Lines)]</b>"
 	src << msg
 
-/client/verb/adminwho()
+/client/verb/staffwho()
 	set category = "Admin"
-	set name = "Adminwho"
-
+	set name = "Staffwho"
 
 	var/num_mods_online = 0
 	var/num_admins_online = 0
