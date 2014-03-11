@@ -56,6 +56,7 @@
 		take_overall_damage(0, amount)
 	else
 		heal_overall_damage(0, -amount)
+	hud_updateflag |= 1 << HEALTH_HUD
 
 /mob/living/carbon/human/Stun(amount)
 	if(HULK in mutations)	return
@@ -97,6 +98,8 @@
 			if (O.status & ORGAN_MUTATED)
 				O.unmutate()
 				src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
+	hud_updateflag |= 1 << HEALTH_HUD
+
 ////////////////////////////////////////////
 
 //Returns a list of damaged organs
@@ -124,6 +127,7 @@
 	var/datum/organ/external/picked = pick(parts)
 	if(picked.heal_damage(brute,burn))
 		UpdateDamageIcon()
+		hud_updateflag |= 1 << HEALTH_HUD
 	updatehealth()
 
 //Damages ONE external organ, organ gets randomly selected from damagable ones.
@@ -135,6 +139,7 @@
 	var/datum/organ/external/picked = pick(parts)
 	if(picked.take_damage(brute,burn,sharp))
 		UpdateDamageIcon()
+		hud_updateflag |= 1 << HEALTH_HUD
 	updatehealth()
 
 
@@ -156,6 +161,7 @@
 
 		parts -= picked
 	updatehealth()
+	hud_updateflag |= 1 << HEALTH_HUD
 	if(update)	UpdateDamageIcon()
 
 // damage MANY external organs, in random order
@@ -175,6 +181,7 @@
 
 		parts -= picked
 	updatehealth()
+	hud_updateflag |= 1 << HEALTH_HUD
 	if(update)	UpdateDamageIcon()
 
 
@@ -200,6 +207,7 @@ This function restores all organs.
 	if(istype(E, /datum/organ/external))
 		if (E.heal_damage(brute, burn))
 			UpdateDamageIcon()
+			hud_updateflag |= 1 << HEALTH_HUD
 	else
 		return 0
 	return
@@ -243,6 +251,7 @@ This function restores all organs.
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()
+	hud_updateflag |= 1 << HEALTH_HUD
 
 	//Embedded projectile code.
 	if(!organ) return

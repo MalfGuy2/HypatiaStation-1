@@ -478,7 +478,7 @@
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
 					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 			dat += "</table>"
-		/*
+
 		if(ticker.mode.ninjas.len > 0)
 			dat += "<br><table cellspacing=5><tr><td><B>Ninjas</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/ninja in ticker.mode.ninjas)
@@ -490,7 +490,7 @@
 				else
 					dat += "<tr><td><i>Ninja not found!</i></td></tr>"
 			dat += "</table>"
-		*/
+
 		if(ticker.mode.cult.len)
 			dat += "<br><table cellspacing=5><tr><td><B>Cultists</B></td><td></td></tr>"
 			for(var/datum/mind/N in ticker.mode.cult)

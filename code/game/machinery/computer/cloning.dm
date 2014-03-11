@@ -173,7 +173,7 @@
 				if(pod1 && pod1.biomass >= CLONE_BIOMASS)
 					dat += {"<a href='byond://?src=\ref[src];clone=\ref[src.active_record]'>Clone</a><br>"}
 				else
-					dat += {"<b>Unsufficient stem cell charges</b><br>"}
+					dat += {"<b>Insufficient stem cell charges</b><br>"}
 
 		if(4)
 			if (!src.active_record)
