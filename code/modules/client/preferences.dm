@@ -788,6 +788,23 @@ datum/preferences
 					gen_record = genmsg
 					SetRecords(user)
 
+		else if (href_list["preference"] == "antagoptions")
+			if(text2num(href_list["active"]) == 0)
+				SetAntagoptions(user)
+				return
+			if (href_list["antagtask"] == "uplinktype")
+				if (uplinklocation == "PDA")
+					uplinklocation = "Headset"
+				else if(uplinklocation == "Headset")
+					uplinklocation = "None"
+				else
+					uplinklocation = "PDA"
+				SetAntagoptions(user)
+			if (href_list["antagtask"] == "done")
+				user << browse(null, "window=antagoptions")
+				ShowChoices(user)
+			return 1
+
 		switch(href_list["task"])
 			if("random")
 				switch(href_list["preference"])

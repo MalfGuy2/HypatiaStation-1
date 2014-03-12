@@ -47,6 +47,7 @@
 		take_overall_damage(amount, 0)
 	else
 		heal_overall_damage(-amount, 0)
+	hud_updateflag |= 1 << HEALTH_HUD
 
 /mob/living/carbon/human/adjustFireLoss(var/amount)
 	if(species && species.burn_mod)
