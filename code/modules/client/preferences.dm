@@ -552,6 +552,22 @@ datum/preferences
 		user << browse(null, "window=preferences")
 		user << browse(HTML, "window=records;size=350x300")
 		return
+		
+	proc/SetAntagoptions(mob/user)
+		var/HTML = "<body>"
+		HTML += "<tt><center>"
+		HTML += "<b>Antagonist Options</b> <hr />"
+		HTML += "<br>"
+		HTML +="Uplink Type : <b><a href='?src=\ref[user];preference=antagoptions;antagtask=uplinktype;active=1'>[uplinklocation]</a></b>"
+		HTML +="<br>"
+		HTML +="<hr />"
+		HTML +="<a href='?src=\ref[user];preference=antagoptions;antagtask=done;active=1'>\[Done\]</a>"
+
+		HTML += "</center></tt>"
+
+		user << browse(null, "window=preferences")
+		user << browse(HTML, "window=antagoptions")
+		return
 
 	proc/GetPlayerAltTitle(datum/job/job)
 		return player_alt_titles.Find(job.title) > 0 \
