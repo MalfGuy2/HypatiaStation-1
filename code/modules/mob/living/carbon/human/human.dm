@@ -37,8 +37,8 @@
 	..()
 
 /mob/living/carbon/human/machine/New()
-	h_style = "blue IPC screen"
 	species = new /datum/species/machine(src)
+	h_style = "blue IPC screen"
 	set_species("Machine")
 	..()
 
