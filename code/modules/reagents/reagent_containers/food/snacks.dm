@@ -1547,8 +1547,8 @@
 			switch(monkey_type)
 				if("tajara")
 					new /mob/living/carbon/monkey/tajara(get_turf(src))
-				if("unathi")
-					new /mob/living/carbon/monkey/unathi(get_turf(src))
+				if("soghun")
+					new /mob/living/carbon/monkey/soghun(get_turf(src))
 				if("skrell")
 					new /mob/living/carbon/monkey/skrell(get_turf(src))
 		else
@@ -1578,10 +1578,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube
 	name = "stok cube"
-	monkey_type ="unathi"
+	monkey_type ="soghun"
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 	name = "stok cube"
-	monkey_type ="unathi"
+	monkey_type ="soghun"
 
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube

@@ -51,44 +51,44 @@
 	item_state = "skrell_suit_black"
 	item_color = "skrell_suit_black"
 
-//Unathi space gear. Huge and restrictive.
+//Soghun space gear. Huge and restrictive.
 
-/obj/item/clothing/head/helmet/space/unathi
+/obj/item/clothing/head/helmet/space/soghun
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECITON_TEMPERATURE
-	var/up = 0 //So Unathi helmets play nicely with the weldervision check.
-	species_restricted = list("Unathi")
+	var/up = 0 //So Soghun helmets play nicely with the weldervision check.
+	species_restricted = list("Soghun")
 
-/obj/item/clothing/head/helmet/space/unathi/helmet_cheap
+/obj/item/clothing/head/helmet/space/soghun/helmet_cheap
 	name = "NT breacher helmet"
-	desc = "Hey! Watch it with that thing! It's a knock-off of a Unathi battle-helm, and that spike could put someone's eye out."
+	desc = "Hey! Watch it with that thing! It's a knock-off of a Soghun battle-helm, and that spike could put someone's eye out."
 	icon_state = "unathi_helm_cheap"
 	item_state = "unathi_helm_cheap"
 	item_color = "unathi_helm_cheap"
 
-/obj/item/clothing/suit/space/unathi
+/obj/item/clothing/suit/space/soghun
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECITON_TEMPERATURE
-	species_restricted = list("Unathi")
+	species_restricted = list("Soghun")
 
-/obj/item/clothing/suit/space/unathi/rig_cheap
+/obj/item/clothing/suit/space/soghun/rig_cheap
 	name = "NT breacher chassis"
-	desc = "A cheap NT knock-off of a Unathi battle-rig. Looks like a fish, moves like a fish, steers like a cow."
+	desc = "A cheap NT knock-off of a Soghun battle-rig. Looks like a fish, moves like a fish, steers like a cow."
 	icon_state = "rig-unathi-cheap"
 	item_state = "rig-unathi-cheap"
 	slowdown = 3
 
-/obj/item/clothing/head/helmet/space/unathi/breacher
+/obj/item/clothing/head/helmet/space/soghun/breacher
 	name = "breacher helm"
 	desc = "Weathered, ancient and battle-scarred. The helmet is too."
 	icon_state = "unathi_breacher"
 	item_state = "unathi_breacher"
 	item_color = "unathi_breacher"
 
-/obj/item/clothing/suit/space/unathi/breacher
+/obj/item/clothing/suit/space/soghun/breacher
 	name = "breacher chassis"
 	desc = "Huge, bulky and absurdly heavy. It must be like wearing a tank."
 	icon_state = "unathi_breacher"
@@ -228,16 +228,16 @@
 	icon_state = "rig-syndie-taj"
 	species_restricted = list("Tajaran")
 
-/obj/item/clothing/head/helmet/space/rig/syndi/unathi
-	icon_state = "rig0-syndie-unathi"
+/obj/item/clothing/head/helmet/space/rig/syndi/soghun
+	icon_state = "rig0-syndie-soghun"
 	item_state = "syndie_helm"
 	item_color = "syndie-unathi"
-	species_restricted = list("Unathi")
+	species_restricted = list("Soghun")
 
-/obj/item/clothing/suit/space/rig/syndi/unathi
+/obj/item/clothing/suit/space/rig/syndi/soghun
 	item_state = "syndie_hardsuit"
-	icon_state = "rig-syndie-unathi"
-	species_restricted = list("Unathi")
+	icon_state = "rig-syndie-soghun"
+	species_restricted = list("Soghun")
 
 /obj/item/clothing/head/helmet/space/rig/syndi/skrell
 	icon_state = "rig0-syndie-skrell"

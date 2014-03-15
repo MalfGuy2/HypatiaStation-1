@@ -478,7 +478,7 @@
 	siemens_coefficient = 0.30
 	permeability_coefficient = 0.01
 	item_color="white"
-	species_restricted = list("exclude","Unathi")
+	species_restricted = list("exclude","Soghun")
 
 /obj/item/clothing/gloves/fluff/walter_brooks_1 //botanistpower: Walter Brooks
 	name = "mittens"
@@ -532,7 +532,7 @@
 	desc = "This is an electronic eye made to fit, and appear similar to a Soghun's eye. From time to time, it blinks red and blue."
 	icon_state = "electronic-eye_Ebele"
 	item_state = "electronic-eye_Ebele"
-	species_restricted = list("Unathi")  // Don't forget to change the description if you want this removed.
+	species_restricted = list("Soghun")  // Don't forget to change the description if you want this removed.
 
 //////////// Hats ////////////
 
@@ -625,8 +625,8 @@
 	name = "old scarf"
 	desc = "An old looking scarf, it seems to be fairly worn."
 	icon = 'icons/obj/clothing/suits.dmi'
-	icon_state = "mantle-unathi"
-	item_state = "mantle-unathi"
+	icon_state = "mantle-soghun"
+	item_state = "mantle-soghun"
 	body_parts_covered = UPPER_TORSO
 
 //////////// Uniforms ////////////

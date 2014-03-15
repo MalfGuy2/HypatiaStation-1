@@ -22,9 +22,9 @@
 	set_species("Tajaran")
 	..()
 
-/mob/living/carbon/human/unathi/New()
-	h_style = "Unathi Horns"
-	set_species("Unathi")
+/mob/living/carbon/human/soghun/New()
+	h_style = "Soghun Horns"
+	set_species("Soghun")
 	..()
 
 /mob/living/carbon/human/vox/New()

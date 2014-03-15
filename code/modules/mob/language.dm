@@ -7,13 +7,13 @@
 	var/desc = "A language."         // Short description for 'Check Languages'.
 	var/speech_verb = "says"         // 'says', 'hisses', 'farts'.
 	var/colour = "body"         // CSS style to use for strings in this language.
-	var/key = "x"                    // Character used to speak in language eg. :o for Unathi.
+	var/key = "x"                    // Character used to speak in language eg. :o for Soghun.
 	var/flags = 0                    // Various language flags.
 	var/native                       // If set, non-native speakers will have trouble speaking.
 
-/datum/language/unathi
+/datum/language/soghun
 	name = "Sinta'unathi"
-	desc = "The common language of Moghes, composed of sibilant hisses and rattles. Spoken natively by Unathi."
+	desc = "The common language of Moghes, composed of sibilant hisses and rattles. Spoken natively by Soghun."
 	speech_verb = "hisses"
 	colour = "soghun"
 	key = "o"
@@ -42,7 +42,7 @@
 	colour = "vox"
 	key = "v"
 	flags = RESTRICTED
-	
+
 /datum/language/obsedai
 	name = "Tummese"
 	desc = "The common tongue of the Obsedai. It sounds like deep rumbling and resonant notes to everyone else."
