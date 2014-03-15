@@ -38,7 +38,13 @@
 
 /mob/living/carbon/human/machine/New()
 	h_style = "blue IPC screen"
+	species = new /datum/species/machine(src)
 	set_species("Machine")
+	..()
+
+/mob/living/carbon/human/obsedai/New()
+	species = new /datum/species/obsedai(src)
+	set_species("Obsedai")
 	..()
 
 /mob/living/carbon/human/New()
@@ -63,7 +69,7 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
-		
+
 
 	..()
 

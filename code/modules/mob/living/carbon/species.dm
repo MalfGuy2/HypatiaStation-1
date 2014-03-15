@@ -146,7 +146,7 @@
 	eyes = "vox_eyes_s"
 	breath_type = "nitrogen"
 
-	flags = NO_SCAN | NO_BLOOD
+	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"
