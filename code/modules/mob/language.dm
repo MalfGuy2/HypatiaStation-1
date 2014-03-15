@@ -42,6 +42,14 @@
 	colour = "vox"
 	key = "v"
 	flags = RESTRICTED
+	
+/datum/language/obsedai
+	name = "Tummese"
+	desc = "The common tongue of the Obsedai. It sounds like deep rumbling and resonant notes to everyone else."
+	speech_verb = "rumbles"
+	colour = "rough"
+	key = "r"
+	flags = RESTRICTED
 
 /datum/language/diona
 	name = "Rootspeak"
