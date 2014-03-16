@@ -15,7 +15,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"cultist" = IS_MODE_COMPILED("cult"),                // 8
 	"infested monkey" = IS_MODE_COMPILED("monkey"),      // 9
 	"ninja" = "true",									 // 10
-	"vox raider" = IS_MODE_COMPILED("heist"),			 // 11
+	//"vox raider" = IS_MODE_COMPILED("heist"),			 // 11
 	"diona" = 1,                                         // 12
 )
 
@@ -351,7 +351,7 @@ datum/preferences
 		else
 			dat += "<b><a href=\"byond://?src=\ref[user];preference=records;record=1\">Character Records</a></b><br>"
 
-		dat += "<b><a href=\"byond://?src=\ref[user];preference=antagoptions;active=0\">Set Antag Options</b></a><br>"
+		//dat += "<b><a href=\"byond://?src=\ref[user];preference=antagoptions;active=0\">Set Antag Options</b></a><br>"
 
 		dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
 
@@ -552,7 +552,7 @@ datum/preferences
 		user << browse(null, "window=preferences")
 		user << browse(HTML, "window=records;size=350x300")
 		return
-		
+
 	proc/SetAntagoptions(mob/user)
 		var/HTML = "<body>"
 		HTML += "<tt><center>"
