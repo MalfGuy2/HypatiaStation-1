@@ -52,7 +52,7 @@
 	keyslot2 = new /obj/item/device/encryptionkey/headset_sec
 
 /obj/item/device/radio/headset/headset_secpara
-	name = "security radio headset"
+	name = "security paramedic radio headset"
 	desc = "This is used by the medic for security. Channels are as follows: :s - Security, :m - Medical."
 	icon_state = "sec_headset"
 	item_state = "headset"

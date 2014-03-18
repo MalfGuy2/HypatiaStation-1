@@ -7,7 +7,7 @@
 	Enjoy! - Doohl
 
 
-	Notice: This all gets automatically compiled in a list in dna.dm, so you do not
+	Notice: This all gets automatically compiled in a list in dna2.dm, so you do not
 	have to define any UI values for sprite accessories manually for hair and facial
 	hair. Just add in new hair types and the game will naturally adapt.
 
@@ -51,7 +51,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
@@ -60,6 +60,10 @@
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
+
+	flair
+		name = "Flaired Hair"
+		icon_state = "hair_flair"
 
 	long
 		name = "Shoulder-length Hair"
@@ -114,6 +118,11 @@
 		name = "Ponytail 3"
 		icon_state = "hair_ponytail3"
 
+	sideponytail
+		name = "Side Ponytail"
+		icon_state = "hair_stail"
+		gender = FEMALE
+
 	parted
 		name = "Parted"
 		icon_state = "hair_parted"
@@ -122,7 +131,7 @@
 		name = "Pompadour"
 		icon_state = "hair_pompadour"
 		gender = MALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	quiff
 		name = "Quiff"
@@ -145,19 +154,19 @@
 		name = "Beehive"
 		icon_state = "hair_beehive"
 		gender = FEMALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	bobcurl
 		name = "Bobcurl"
 		icon_state = "hair_bobcurl"
 		gender = FEMALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	bob
 		name = "Bob"
 		icon_state = "hair_bobcut"
 		gender = FEMALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	bowl
 		name = "Bowl"
@@ -168,7 +177,7 @@
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
 		gender = MALE
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	crew
 		name = "Crewcut"
@@ -230,7 +239,7 @@
 	mohawk
 		name = "Mohawk"
 		icon_state = "hair_d"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 	jensen
 		name = "Adam Jensen Hair"
 		icon_state = "hair_jensen"
@@ -241,10 +250,15 @@
 		icon_state = "hair_gelled"
 		gender = FEMALE
 
+	gentle
+		name = "Gentle"
+		icon_state = "hair_gentle"
+		gender = FEMALE
+
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 	kusangi
 		name = "Kusanagi Hair"
 		icon_state = "hair_kusanagi"
@@ -262,6 +276,11 @@
 	braid
 		name = "Floorlength Braid"
 		icon_state = "hair_braid"
+		gender = FEMALE
+
+	braid2
+		name = "Long Braid"
+		icon_state = "hair_hbraid"
 		gender = FEMALE
 
 	odango
@@ -288,10 +307,30 @@
 		icon_state = "hair_e"
 		gender = MALE // turnoff!
 
-
 	bald
 		name = "Bald"
 		icon_state = "bald"
+
+	icp_screen_pink
+		name = "pink IPC screen"
+		icon_state = "ipc_pink"
+		species_allowed = list("Machine")
+
+	icp_screen_red
+		name = "red IPC screen"
+		icon_state = "ipc_red"
+		species_allowed = list("Machine")
+
+	icp_screen_green
+		name = "green IPC screen"
+		icon_state = "ipc_green"
+		species_allowed = list("Machine")
+
+	icp_screen_blue
+		name = "blue IPC screen"
+		icon_state = "ipc_blue"
+		species_allowed = list("Machine")
+
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -309,7 +348,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajaran","Skrell","Vox")
+		species_allowed = list("Human","Soghun","Tajaran","Skrell","Vox","Machine")
 
 	watson
 		name = "Watson Mustache"
@@ -350,7 +389,7 @@
 	elvis
 		name = "Elvis Sideburns"
 		icon_state = "facial_elvis"
-		species_allowed = list("Human","Unathi")
+		species_allowed = list("Human","Soghun")
 
 	abe
 		name = "Abraham Lincoln Beard"
@@ -386,33 +425,33 @@
 
 /datum/sprite_accessory/hair
 	una_spines_long
-		name = "Long Unathi Spines"
+		name = "Long Soghun Spines"
 		icon_state = "soghun_longspines"
-		species_allowed = list("Unathi")
+		species_allowed = list("Soghun")
 		do_colouration = 0
 
 	una_spines_short
-		name = "Short Unathi Spines"
+		name = "Short Soghun Spines"
 		icon_state = "soghun_shortspines"
-		species_allowed = list("Unathi")
+		species_allowed = list("Soghun")
 		do_colouration = 0
 
 	una_frills_long
-		name = "Long Unathi Frills"
+		name = "Long Soghun Frills"
 		icon_state = "soghun_longfrills"
-		species_allowed = list("Unathi")
+		species_allowed = list("Soghun")
 		do_colouration = 0
 
 	una_frills_short
-		name = "Short Unathi Frills"
-		icon_state = "soghun_shortfrill"
-		species_allowed = list("Unathi")
+		name = "Short Soghun Frills"
+		icon_state = "soghun_shortfrills"
+		species_allowed = list("Soghun")
 		do_colouration = 0
 
 	una_horns
-		name = "Unathi Horns"
+		name = "Soghun Horns"
 		icon_state = "soghun_horns"
-		species_allowed = list("Unathi")
+		species_allowed = list("Soghun")
 		do_colouration = 0
 
 	skr_tentacle_m
@@ -466,6 +505,18 @@
 	taj_ears_clean
 		name = "Tajara Clean"
 		icon_state = "hair_clean"
+		species_allowed = list("Tajaran")
+		do_colouration = 0
+
+	taj_ears_bangs
+		name = "Tajara Bangs"
+		icon_state = "hair_bangs"
+		species_allowed = list("Tajaran")
+		do_colouration = 0
+
+	taj_ears_braid
+		name = "Tajara Braid"
+		icon_state = "hair_tbraid"
 		species_allowed = list("Tajaran")
 		do_colouration = 0
 
@@ -582,11 +633,11 @@
 		icon = 'icons/mob/human_races/r_tajaran.dmi'
 		species_allowed = list("Tajaran")
 
-	unathi
-		name = "Default Unathi skin"
+	soghun
+		name = "Default Soghun skin"
 		icon_state = "default"
 		icon = 'icons/mob/human_races/r_lizard.dmi'
-		species_allowed = list("Unathi")
+		species_allowed = list("Soghun")
 
 	skrell
 		name = "Default skrell skin"

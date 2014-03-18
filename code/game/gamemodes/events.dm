@@ -233,10 +233,10 @@
 			if (prob(25))
 				if (prob(75))
 					randmutb(H)
-					domutcheck(H,null,1)
+					domutcheck(H,null,MUTCHK_FORCED)
 				else
 					randmutg(H)
-					domutcheck(H,null,1)
+					domutcheck(H,null,MUTCHK_FORCED)
 	for(var/mob/living/carbon/monkey/M in living_mob_list)
 		var/turf/T = get_turf(M)
 		if(!T)
@@ -426,9 +426,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS")
 				if(13)
 					M << "<br>"
-					M << "\red [crew] is [allergysev] to [allergy]...LAWS UPDATED"
+					M << "\red [crew] is [allergysev] allergic to [allergy]...LAWS UPDATED"
 					M << "<br>"
-					M.add_ion_law("[crew] is [allergysev] to [allergy]")
+					M.add_ion_law("[crew] is [allergysev] allergic to [allergy]")
 				if(14)
 					M << "<br>"
 					M << "\red THE STATION IS [who2pref] [who2]...LAWS UPDATED"
