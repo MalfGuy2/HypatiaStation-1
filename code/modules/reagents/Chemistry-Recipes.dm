@@ -105,19 +105,11 @@ datum
 			required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "oxygen" = 1)
 			result_amount = 3
 
-		paracetamol
-			name = "Paracetamol"
-			id = "paracetamol"
-			result = "paracetamol"
-			required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
-			result_amount = 3
-
 		oxycodone
 			name = "Oxycodone"
 			id = "oxycodone"
 			result = "oxycodone"
-			required_reagents = list("ethanol" = 1, "tramadol" = 1)
-			required_catalysts = list("plasma" = 1)
+			required_reagents = list("ethanol" = 1, "tramadol" = 1, "plasma" = 1)
 			result_amount = 1
 
 		//cyanide
@@ -126,13 +118,6 @@ datum
 		//	result = "cyanide"
 		//	required_reagents = list("hydrogen" = 1, "carbon" = 1, "nitrogen" = 1)
 		//	result_amount = 1
-
-		water //I can't believe we never had this.
-			name = "Water"
-			id = "water"
-			result = null
-			required_reagents = list("oxygen" = 2, "hydrogen" = 1)
-			result_amount = 1
 
 		thermite
 			name = "Thermite"
@@ -204,14 +189,6 @@ datum
 			required_reagents = list("silicon" = 1, "carbon" = 1)
 			result_amount = 2
 
-		peridaxon
-			name = "Peridaxon"
-			id = "peridaxon"
-			result = "peridaxon"
-			required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
-			required_catalysts = list("plasma" = 5)
-			result_amount = 2
-
 		virus_food
 			name = "Virus Food"
 			id = "virusfood"
@@ -252,7 +229,7 @@ datum
 			name = "Dexalin"
 			id = "dexalin"
 			result = "dexalin"
-			required_reagents = list("oxygen" = 2, "plasma" = 0.1)
+			required_reagents = list("oxygen" = 2)
 			required_catalysts = list("plasma" = 5)
 			result_amount = 1
 
@@ -302,7 +279,7 @@ datum
 			name = "Clonexadone"
 			id = "clonexadone"
 			result = "clonexadone"
-			required_reagents = list("cryoxadone" = 1, "sodium" = 1, "plasma" = 0.1)
+			required_reagents = list("cryoxadone" = 1, "sodium" = 1)
 			required_catalysts = list("plasma" = 5)
 			result_amount = 2
 
@@ -452,13 +429,13 @@ datum
 			id = "chemsmoke"
 			result = null
 			required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
-			result_amount = 0.4
+			result_amount = null
 			secondary = 1
 			on_reaction(var/datum/reagents/holder, var/created_volume)
 				var/location = get_turf(holder.my_atom)
 				var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
 				S.attach(location)
-				S.set_up(holder, created_volume, 0, location)
+				S.set_up(holder, 10, 0, location)
 				playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 				spawn(0)
 					S.start()
@@ -473,27 +450,6 @@ datum
 			result = "chloralhydrate"
 			required_reagents = list("ethanol" = 1, "chlorine" = 3, "water" = 1)
 			result_amount = 1
-
-		potassium_chloride
-			name = "Potassium Chloride"
-			id = "potassium_chloride"
-			result = "potassium_chloride"
-			required_reagents = list("sodiumchloride" = 1, "potassium" = 1)
-			result_amount = 2
-
-		potassium_chlorophoride
-			name = "Potassium Chlorophoride"
-			id = "potassium_chlorophoride"
-			result = "potassium_chlorophoride"
-			required_reagents = list("potassium_chloride" = 1, "plasma" = 1, "chloralhydrate" = 1)
-			result_amount = 4
-
-		stoxin
-			name = "Sleep Toxin"
-			id = "stoxin"
-			result = "stoxin"
-			required_reagents = list("chloralhydrate" = 1, "sugar" = 4)
-			result_amount = 5
 
 		zombiepowder
 			name = "Zombie Powder"
@@ -514,7 +470,7 @@ datum
 			id = "mindbreaker"
 			result = "mindbreaker"
 			required_reagents = list("silicon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
-			result_amount = 3
+			result_amount = 5
 
 		lipozine
 			name = "Lipozine"
@@ -1549,7 +1505,7 @@ datum
 			name = "Space Beer"
 			id = "spacebeer"
 			result = "beer"
-			required_reagents = list("cornoil" = 10)
+			required_reagents = list("flour" = 10)
 			required_catalysts = list("enzyme" = 5)
 			result_amount = 10
 
@@ -1834,8 +1790,8 @@ datum
 			result = "barefoot"
 			required_reagents = list("berryjuice" = 1, "cream" = 1, "vermouth" = 1)
 			result_amount = 3
-
-		grapesoda
+			
+		grapesoda //Allows Grape Soda to be made
 			name = "Grape Soda"
 			id = "grapesoda"
 			result = "grapesoda"

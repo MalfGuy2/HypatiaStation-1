@@ -4,7 +4,7 @@
 	name = "Rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
-	var/datum/geosample/geologic_data
+	var/datum/geosample/geological_data
 
 /obj/item/weapon/ore/uranium
 	name = "Uranium ore"

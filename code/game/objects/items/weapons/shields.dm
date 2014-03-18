@@ -61,8 +61,9 @@
 	origin_tech = "magnets=3;syndicate=4"
 
 
-/obj/item/weapon/cloaking_device/attack_self(mob/user as mob)
+/obj/item/weapon/cloaking_device/attack_self(mob/living/carbon/human/user)
 	src.active = !( src.active )
+	user.stealth = !(user.stealth)
 	if (src.active)
 		user << "\blue The cloaking device is now active."
 		src.icon_state = "shield1"
@@ -70,6 +71,7 @@
 		user << "\blue The cloaking device is now inactive."
 		src.icon_state = "shield0"
 	src.add_fingerprint(user)
+
 	return
 
 /obj/item/weapon/cloaking_device/emp_act(severity)

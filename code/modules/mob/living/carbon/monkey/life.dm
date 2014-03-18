@@ -13,25 +13,21 @@
 	set invisibility = 0
 	set background = 1
 	if (monkeyizing)	return
-	if (update_muts)
-		update_muts=0
-		domutcheck(src,null,MUTCHK_FORCED)
 	..()
 
 	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
 	if(loc)
 		environment = loc.return_air()
 
-	if (stat != DEAD) 
-		if(!istype(src,/mob/living/carbon/monkey/diona)) //still breathing
-			//First, resolve location and get a breath
-			if(air_master.current_cycle%4==2)
-				//Only try to take a breath every 4 seconds, unless suffocating
-				breathe()
-			else //Still give containing object the chance to interact
-				if(istype(loc, /obj/))
-					var/obj/location_as_object = loc
-					location_as_object.handle_internal_lifeform(src, 0)
+	if (stat != DEAD) //still breathing
+		//First, resolve location and get a breath
+		if(air_master.current_cycle%4==2)
+			//Only try to take a breath every 4 seconds, unless suffocating
+			breathe()
+		else //Still give containing object the chance to interact
+			if(istype(loc, /obj/))
+				var/obj/location_as_object = loc
+				location_as_object.handle_internal_lifeform(src, 0)
 
 
 		//Updates the number of stored chemicals for powers
@@ -71,11 +67,8 @@
 		G.process()
 
 	if(!client && stat == CONSCIOUS)
-
-		if(prob(33) && canmove && isturf(loc) && !pulledby) //won't move if being pulled
-
+		if(prob(33) && canmove && isturf(loc))
 			step(src, pick(cardinal))
-
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
 
@@ -441,7 +434,7 @@
 
 	proc/handle_chemicals_in_body()
 
-		if(alien) //Diona nymphs are the only alien monkey currently.
+		if(istype(src,/mob/living/carbon/monkey/diona)) //Filthy check. Dionaea nymphs need light or they get sad.
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
 				var/turf/T = loc
@@ -456,11 +449,11 @@
 			if(nutrition > 500)
 				nutrition = 500
 			if(light_amount > 2) //if there's enough light, heal
-				adjustBruteLoss(-1)
+				heal_overall_damage(1,1)
 				adjustToxLoss(-1)
 				adjustOxyLoss(-1)
 
-		if(reagents) reagents.metabolize(src,alien)
+		if(reagents) reagents.metabolize(src)
 
 		if (drowsyness)
 			drowsyness--
@@ -521,7 +514,7 @@
 				sleeping = max(sleeping-1, 0)
 				blinded = 1
 				stat = UNCONSCIOUS
-				if( prob(10) && health && !hal_crit )
+				if( prob(10) && health && !hal_crit && client)
 					spawn(0)
 						emote("snore")
 			else if(resting)

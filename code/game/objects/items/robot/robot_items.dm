@@ -5,7 +5,7 @@
 ***********************************************************************/
 //Might want to move this into several files later but for now it works here
 /obj/item/borg/stun
-	name = "electrified arm"
+	name = "Electrified Arm"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
@@ -26,7 +26,7 @@
 				O.show_message("\red <B>[user] has prodded [M] with an electrically-charged arm!</B>", 1, "\red You hear someone fall", 2)
 
 /obj/item/borg/overdrive
-	name = "overdrive"
+	name = "Overdrive"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
@@ -40,27 +40,27 @@
 
 
 /obj/item/borg/sight/xray
-	name = "\proper x-ray Vision"
+	name = "X-ray Vision"
 	sight_mode = BORGXRAY
 
 
 /obj/item/borg/sight/thermal
-	name = "\proper thermal vision"
+	name = "Thermal Vision"
 	sight_mode = BORGTHERM
 
 
 /obj/item/borg/sight/meson
-	name = "\proper meson vision"
+	name = "Meson Vision"
 	sight_mode = BORGMESON
 
 
 /obj/item/borg/sight/hud
-	name = "hud"
+	name = "Hud"
 	var/obj/item/clothing/glasses/hud/hud = null
 
 
 /obj/item/borg/sight/hud/med
-	name = "medical hud"
+	name = "Medical Hud"
 
 
 	New()
@@ -70,7 +70,7 @@
 
 
 /obj/item/borg/sight/hud/sec
-	name = "security hud"
+	name = "Security Hud"
 
 
 	New()

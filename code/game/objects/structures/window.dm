@@ -9,7 +9,7 @@
 	flags = ON_BORDER
 	var/health = 14.0
 	var/ini_dir = null
-	var/state = 2
+	var/state = 0
 	var/reinf = 0
 	var/basestate
 	var/shardtype = /obj/item/weapon/shard
@@ -338,7 +338,6 @@
 	spawn(2)
 		if(!src) return
 		if(!is_fulltile())
-			icon_state = "[basestate]"
 			return
 		var/junction = 0 //will be used to determine from which side the window is connected to other windows
 		if(anchored)
