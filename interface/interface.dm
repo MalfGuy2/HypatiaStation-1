@@ -36,7 +36,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://hypatiastation.net/forum/viewtopic.php?f=2&t=204&view=print" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='97%' src="http://hypatiastation.net/viewtopic.php?f=2&t=204&view=print" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>"}
 
