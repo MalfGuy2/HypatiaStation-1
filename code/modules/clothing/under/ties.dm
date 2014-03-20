@@ -307,8 +307,8 @@
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
 	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
-	icon_state = "unathiharness2"
-	item_color = "unathiharness2"
+	icon_state = "soghunharness2"
+	item_color = "soghunharness2"
 	slots = 2
 
 /obj/item/clothing/tie/storage/knifeharness/attackby(var/obj/item/O as obj, mob/user as mob)
@@ -318,10 +318,10 @@
 /obj/item/clothing/tie/storage/knifeharness/proc/update()
 	var/count = 0
 	for(var/obj/item/I in hold)
-		if(istype(I,/obj/item/weapon/hatchet/unathiknife))
+		if(istype(I,/obj/item/weapon/hatchet/soghunknife))
 			count++
 	if(count>2) count = 2
-	item_state = "unathiharness[count]"
+	item_state = "soghunharness[count]"
 	icon_state = item_state
 	item_color = item_state
 
@@ -333,5 +333,5 @@
 
 /obj/item/clothing/tie/storage/knifeharness/New()
 	..()
-	new /obj/item/weapon/hatchet/unathiknife(hold)
-	new /obj/item/weapon/hatchet/unathiknife(hold)
+	new /obj/item/weapon/hatchet/soghunknife(hold)
+	new /obj/item/weapon/hatchet/soghunknife(hold)

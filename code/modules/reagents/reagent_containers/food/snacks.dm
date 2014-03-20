@@ -66,7 +66,7 @@
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
 				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-				log_attack("[user.name] ([user.ckey]) fed [M.name] ([M.ckey]) with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+				msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message("\red [user] feeds [M] [src].", 1)
@@ -238,7 +238,9 @@
 //	New()																//Don't mess with this.
 //		..()															//Same here.
 //		reagents.add_reagent("xenomicrobes", 10)						//This is what is in the food item. you may copy/paste
-//		reagents.add_reagent("nutriment", 2)							//	this line of code for all the content
+//		reagents.add_reagent("nutriment", 2)							//	this line of code for all the contents.
+//		bitesize = 3													//This is the amount each bite consumes.
+
 
 
 
@@ -1545,8 +1547,8 @@
 			switch(monkey_type)
 				if("tajara")
 					new /mob/living/carbon/monkey/tajara(get_turf(src))
-				if("unathi")
-					new /mob/living/carbon/monkey/unathi(get_turf(src))
+				if("soghun")
+					new /mob/living/carbon/monkey/soghun(get_turf(src))
 				if("skrell")
 					new /mob/living/carbon/monkey/skrell(get_turf(src))
 		else
@@ -1576,10 +1578,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube
 	name = "stok cube"
-	monkey_type ="unathi"
+	monkey_type ="soghun"
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 	name = "stok cube"
-	monkey_type ="unathi"
+	monkey_type ="soghun"
 
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube
@@ -2748,6 +2750,8 @@
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
+<<<<<<< HEAD
+=======
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	name = "roast diona"
 	desc = "It's like an enormous, leathery carrot. With an eye."
@@ -2768,6 +2772,7 @@
 // new old food stuff from bs12
 ///////////////////////////////////////////
 
+>>>>>>> 6e5c35d83359bc464366f8c61a48775ee26d1819
 // Flour + egg = dough
 /obj/item/weapon/reagent_containers/food/snacks/flour/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/egg))
@@ -2832,7 +2837,7 @@
 	New()
 		..()
 		reagents.add_reagent("nutriment", 4)
-/* Commenting out for now, dough and buns are being used for customizable foods.
+/*
 /obj/item/weapon/reagent_containers/food/snacks/bun/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/faggot))
@@ -2953,4 +2958,3 @@
 	New()
 		..()
 		reagents.add_reagent("nutriment", 3)
-
