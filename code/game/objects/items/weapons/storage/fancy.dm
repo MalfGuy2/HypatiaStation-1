@@ -81,7 +81,7 @@
  */
 
 /obj/item/weapon/storage/fancy/candle_box
-	name = "Candle pack"
+	name = "candle pack"
 	desc = "A pack of red candles."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candlebox5"
@@ -254,4 +254,3 @@
 /obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	update_icon()
-

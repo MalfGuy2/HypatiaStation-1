@@ -3,14 +3,14 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-CREATE SCHEMA IF NOT EXISTS `hypatiastation` DEFAULT CHARACTER SET latin1 ;
+CREATE SCHEMA IF NOT EXISTS `tgstation` DEFAULT CHARACTER SET latin1 ;
 USE `mydb` ;
-USE `hypatiastation` ;
+USE `tgstation` ;
 
 -- -----------------------------------------------------
--- Table `hypatiastation`.`death`
+-- Table `tgstation`.`death`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hypatiastation`.`death` (
+CREATE  TABLE IF NOT EXISTS `tgstation`.`death` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `pod` TEXT NOT NULL COMMENT 'Place of death' ,
   `coord` TEXT NOT NULL COMMENT 'X, Y, Z POD' ,
@@ -33,9 +33,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hypatiastation`.`karma`
+-- Table `tgstation`.`karma`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hypatiastation`.`karma` (
+CREATE  TABLE IF NOT EXISTS `tgstation`.`karma` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `spendername` TEXT NOT NULL ,
   `spenderkey` TEXT NOT NULL ,
@@ -53,9 +53,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hypatiastation`.`karmatotals`
+-- Table `tgstation`.`karmatotals`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hypatiastation`.`karmatotals` (
+CREATE  TABLE IF NOT EXISTS `tgstation`.`karmatotals` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `byondkey` TEXT NOT NULL ,
   `karma` INT(11) NOT NULL ,
@@ -66,9 +66,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hypatiastation`.`library`
+-- Table `tgstation`.`library`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hypatiastation`.`library` (
+CREATE  TABLE IF NOT EXISTS `tgstation`.`library` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `author` TEXT NOT NULL ,
   `title` TEXT NOT NULL ,
@@ -81,9 +81,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hypatiastation`.`population`
+-- Table `tgstation`.`population`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hypatiastation`.`population` (
+CREATE  TABLE IF NOT EXISTS `tgstation`.`population` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `playercount` INT(11) NULL DEFAULT NULL ,
   `admincount` INT(11) NULL DEFAULT NULL ,

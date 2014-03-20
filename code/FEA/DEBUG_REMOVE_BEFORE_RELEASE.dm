@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 
 datum/air_group/var/marker
 datum/air_group/var/debugging = 0
