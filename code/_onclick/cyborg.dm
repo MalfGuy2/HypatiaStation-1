@@ -48,8 +48,8 @@
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)
-		A.add_hiddenprint(src)
 		A.attack_robot(src)
+		A.add_hiddenprint(src)
 		return
 
 	// buckled cannot prevent machine interlinking but stops arm movement

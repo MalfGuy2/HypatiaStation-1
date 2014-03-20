@@ -153,7 +153,7 @@
 	if(I.type == /obj/item/device/analyzer)
 		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
 	if(istype(I, /obj/item/weapon/wrench))
-		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
+		user << "<span class='notice'>You begin to adjust the temperature valve with the [I].</span>"
 		if(do_after(user, 50))
 			switch(watertemp)
 				if("normal")
@@ -162,8 +162,7 @@
 					watertemp = "boiling"
 				if("boiling")
 					watertemp = "normal"
-			user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
-			add_fingerprint(user)
+			user.visible_message("<span class='notice'>[user] adjusts the shower with the [I].</span>", "<span class='notice'>You adjust the shower with the [I].</span>")
 
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
@@ -268,12 +267,10 @@
 			if(H.belt)
 				if(H.belt.clean_blood())
 					H.update_inv_belt(0)
-			H.clean_blood(washshoes)
 		else
 			if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
 				if(M.wear_mask.clean_blood())
 					M.update_inv_wear_mask(0)
-			M.clean_blood()
 	else
 		O.clean_blood()
 
@@ -356,7 +353,7 @@
 	if (istype(O, /obj/item/weapon/reagent_containers))
 		var/obj/item/weapon/reagent_containers/RG = O
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("\blue [user] fills \the [RG] using \the [src].","\blue You fill \the [RG] using \the [src].")
+		user.visible_message("\blue [user] fills the [RG] using \the [src].","\blue You fill the [RG] using \the [src].")
 		return
 
 	else if (istype(O, /obj/item/weapon/melee/baton))

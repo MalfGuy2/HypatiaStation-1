@@ -11,11 +11,11 @@ var/global/floorIsLava = 0
 		if(R_MOD || R_ADMIN & C.holder.rights)
 			C << msg
 
-/proc/msg_admin_attack(var/text) //Toggleable Attack Messages
+/proc/msg_admin_attack(var/text, var/attacker as mob, var/victim as mob) //Toggleable Attack Messages
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	log_adminwarn(rendered)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if(R_ADMIN || R_MOD & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
 				C << msg
@@ -118,25 +118,6 @@ var/global/floorIsLava = 0
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
-
-			// DNA2 - Admin Hax
-			if(iscarbon(M))
-				body += "<br><br>"
-				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
-				var/bname
-				for(var/block=1;block<=DNA_SE_LENGTH;block++)
-					if(((block-1)%5)==0)
-						body += "</tr><tr><th>[block-1]</th>"
-					bname = assigned_blocks[block]
-					body += "<td>"
-					if(bname)
-						var/bstate=M.dna.GetSEState(block)
-						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						body += "<A href='?src=\ref[src];togmutate=\ref[M];block=[block]' style='color:[bcolor];'>[bname]</A><sub>[block]</sub>"
-					else
-						body += "[block]"
-					body+="</td>"
-				body += "</tr></table>"
 
 			body += {"<br><br>
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
@@ -601,8 +582,7 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];secretsfun=gravanomalies'>Spawn a gravitational anomaly (aka lagitational anomolag)</A><BR>
 			<A href='?src=\ref[src];secretsfun=timeanomalies'>Spawn wormholes</A><BR>
 			<A href='?src=\ref[src];secretsfun=goblob'>Spawn blob</A><BR>
-			<A href='?src=\ref[src];secretsfun=aliens'>Trigger a Xenomorph infestation</A><BR>
-			<A href='?src=\ref[src];secretsfun=borers'>Trigger a Cortical Borer infestation</A><BR>
+			<A href='?src=\ref[src];secretsfun=aliens'>Trigger an Alien infestation</A><BR>
 			<A href='?src=\ref[src];secretsfun=alien_silent'>Spawn an Alien silently</A><BR>
 			<A href='?src=\ref[src];secretsfun=spiders'>Trigger a Spider infestation</A><BR>
 			<A href='?src=\ref[src];secretsfun=spaceninja'>Send in a space ninja</A><BR>
@@ -726,20 +706,6 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled OOC.")
 	message_admins("[key_name_admin(usr)] toggled OOC.", 1)
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-/datum/admins/proc/toggledsay()
-	set category = "Server"
-	set desc="Globally Toggles DSAY"
-	set name="Toggle DSAY"
-	dsay_allowed = !( dsay_allowed )
-	if (dsay_allowed)
-		world << "<B>Deadchat has been globally enabled!</B>"
-	else
-		world << "<B>Deadchat has been globally disabled!</B>"
-	log_admin("[key_name(usr)] toggled deadchat.")
-	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
-	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
@@ -1001,11 +967,7 @@ var/global/floorIsLava = 0
 		if(!chosen)
 			return
 
-	if(ispath(chosen,/turf))
-		var/turf/T = get_turf(usr.loc)
-		T.ChangeTurf(chosen)
-	else
-		new chosen(usr.loc)
+	new chosen(usr.loc)
 
 	log_admin("[key_name(usr)] spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

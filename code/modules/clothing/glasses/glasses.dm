@@ -49,6 +49,13 @@
 	icon_state = "monocle"
 	item_state = "headset" // lol
 
+/obj/item/clothing/glasses/monocle/electronic    //bean-dip's custom item. -- Dalekfodder
+	name = "Electronic Eye"
+	desc = "This is an electronic eye made to fit, and appear similar to a Soghun's eye. From time to time, it blinks red and blue."
+	icon_state = "electronic-eye_Ebele"
+	item_state = "electronic-eye_Ebele"
+	species_restricted = list("Unathi")  // Don't forget to change the description if you want this removed.
+
 /obj/item/clothing/glasses/material
 	name = "Optical Material Scanner"
 	desc = "Very confusing glasses."
@@ -149,11 +156,6 @@
 		..()
 		src.hud = new/obj/item/clothing/glasses/hud/security(src)
 		return
-
-/obj/item/clothing/glasses/sunglasses/sechud/tactical
-	name = "tactical HUD"
-	desc = "Flash-resistant goggles with inbuilt combat and security information."
-	icon_state = "swatgoggles"
 
 /obj/item/clothing/glasses/thermal
 	name = "Optical Thermal Scanner"

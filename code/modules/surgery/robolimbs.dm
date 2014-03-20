@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/
-	can_infect = 0
+	can_infect = 1
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (!hasorgans(target))
 			return 0
@@ -16,7 +16,7 @@
 		if (affected.parent)
 			if (affected.parent.status & ORGAN_DESTROYED)
 				return 0
-		return affected.name != "head"
+		return 1
 
 
 /datum/surgery_step/limb/cut
@@ -28,10 +28,6 @@
 
 	min_duration = 80
 	max_duration = 100
-
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		return ..() && !(affected.status & ORGAN_CUT_AWAY)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
@@ -65,7 +61,7 @@
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-		return ..() && affected.status & ORGAN_CUT_AWAY && affected.open < 3 && !(affected.status & ORGAN_ATTACHABLE)
+		return ..() && affected.status & ORGAN_CUT_AWAY
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
@@ -129,6 +125,7 @@
 
 /datum/surgery_step/limb/attach
 	allowed_tools = list(/obj/item/robot_parts = 100)
+	can_infect = 0
 
 	min_duration = 80
 	max_duration = 100
@@ -151,7 +148,6 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] has attached \the [tool] where [target]'s [affected.display_name] used to be.",	\
 		"\blue You have attached \the [tool] where [target]'s [affected.display_name] used to be.")
-		affected.germ_level = 0
 		affected.robotize()
 		if(L.sabotaged)
 			affected.sabotaged = 1

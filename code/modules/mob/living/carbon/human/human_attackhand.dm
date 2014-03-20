@@ -52,7 +52,6 @@
 			playsound(loc, "punch", 25, 1, -1)
 
 			visible_message("\red <B>[M] has punched [src]!</B>")
-
 			apply_damage(damage, HALLOSS, affecting, armor_block)
 			if(damage >= 9)
 				visible_message("\red <B>[M] has weakened [src]!</B>")
@@ -114,7 +113,9 @@
 
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[M.species.attack_verb]ed [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [M.species.attack_verb]ed by [M.name] ([M.ckey])</font>")
-			msg_admin_attack("[key_name(M)] [M.species.attack_verb]ed [key_name(src)]")
+			log_attack("[M.name] ([M.ckey]) [M.species.attack_verb]ed [src.name] ([src.ckey])")
+			msg_admin_attack("[M.name] ([M.ckey]) wailed on [src.name] ([src.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>)")
+
 
 			var/damage = rand(0, 5)//BS12 EDIT
 			if(!damage)
@@ -153,7 +154,7 @@
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
 
-			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
+			log_attack("[M.name] ([M.ckey]) disarmed [src.name] ([src.ckey])")
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)

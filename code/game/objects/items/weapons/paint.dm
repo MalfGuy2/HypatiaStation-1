@@ -36,11 +36,6 @@ var/global/list/cached_icons = list()
 		..()
 		reagents.add_reagent("paint_[paint_type]", volume)
 
-	on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
-		var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
-		for(var/datum/reagent/paint/P in reagents.reagent_list)
-			P.color = mixedcolor
-
 	red
 		icon_state = "paint_red"
 		paint_type = "red"
@@ -73,8 +68,7 @@ var/global/list/cached_icons = list()
 		paint_type = "remover"
 /*
 /obj/item/weapon/paint
-	gender= PLURAL
-	name = "paint"
+	name = "Paint Can"
 	desc = "Used to recolor floors and walls. Can not be removed by the janitor."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "paint_neutral"
@@ -83,44 +77,43 @@ var/global/list/cached_icons = list()
 	w_class = 3.0
 
 /obj/item/weapon/paint/red
-	name = "red paint"
+	name = "Red paint"
 	color = "FF0000"
 	icon_state = "paint_red"
 
 /obj/item/weapon/paint/green
-	name = "green paint"
+	name = "Green paint"
 	color = "00FF00"
 	icon_state = "paint_green"
 
 /obj/item/weapon/paint/blue
-	name = "blue paint"
+	name = "Blue paint"
 	color = "0000FF"
 	icon_state = "paint_blue"
 
 /obj/item/weapon/paint/yellow
-	name = "yellow paint"
+	name = "Yellow paint"
 	color = "FFFF00"
 	icon_state = "paint_yellow"
 
 /obj/item/weapon/paint/violet
-	name = "violet paint"
+	name = "Violet paint"
 	color = "FF00FF"
 	icon_state = "paint_violet"
 
 /obj/item/weapon/paint/black
-	name = "black paint"
+	name = "Black paint"
 	color = "333333"
 	icon_state = "paint_black"
 
 /obj/item/weapon/paint/white
-	name = "white paint"
+	name = "White paint"
 	color = "FFFFFF"
 	icon_state = "paint_white"
 
 
 /obj/item/weapon/paint/anycolor
-	gender= PLURAL
-	name = "any color"
+	name = "Any color"
 	icon_state = "paint_neutral"
 
 	attack_self(mob/user as mob)
@@ -163,8 +156,7 @@ var/global/list/cached_icons = list()
 	return
 
 /obj/item/weapon/paint/paint_remover
-	gender =  PLURAL
-	name = "paint remover"
+	name = "Paint remover"
 	icon_state = "paint_neutral"
 
 	afterattack(turf/target, mob/user as mob)
@@ -176,9 +168,9 @@ var/global/list/cached_icons = list()
 datum/reagent/paint
 	name = "Paint"
 	id = "paint_"
+	description = "Floor paint is used to color floor tiles."
 	reagent_state = 2
 	color = "#808080"
-	description = "This paint will only adhere to floor tiles."
 
 	reaction_turf(var/turf/T, var/volume)
 		if(!istype(T) || istype(T, /turf/space))
@@ -197,26 +189,26 @@ datum/reagent/paint
 	red
 		name = "Red Paint"
 		id = "paint_red"
-		color = "#FE191A"
+		color = "#FF0000"
 
 	green
 		name = "Green Paint"
-		color = "#18A31A"
+		color = "#00FF00"
 		id = "paint_green"
 
 	blue
 		name = "Blue Paint"
-		color = "#247CFF"
+		color = "#0000FF"
 		id = "paint_blue"
 
 	yellow
 		name = "Yellow Paint"
-		color = "#FDFE7D"
+		color = "#FFFF00"
 		id = "paint_yellow"
 
 	violet
 		name = "Violet Paint"
-		color = "#CC0099"
+		color = "#FF00FF"
 		id = "paint_violet"
 
 	black
@@ -226,7 +218,7 @@ datum/reagent/paint
 
 	white
 		name = "White Paint"
-		color = "#F0F8FF"
+		color = "#FFFFFF"
 		id = "paint_white"
 
 datum/reagent/paint_remover

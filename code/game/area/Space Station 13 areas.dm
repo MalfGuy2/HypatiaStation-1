@@ -56,7 +56,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
 
-/hook/startup/proc/setupTeleportLocs()
+proc/process_teleport_locs()
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
 		if(teleportlocs.Find(AR.name)) continue
@@ -65,13 +65,20 @@ var/list/teleportlocs = list()
 			teleportlocs += AR.name
 			teleportlocs[AR.name] = AR
 
-	teleportlocs = sortAssoc(teleportlocs)
-
-	return 1
+	var/not_in_order = 0
+	do
+		not_in_order = 0
+		if(teleportlocs.len <= 1)
+			break
+		for(var/i = 1, i <= (teleportlocs.len - 1), i++)
+			if(sorttext(teleportlocs[i], teleportlocs[i+1]) == -1)
+				teleportlocs.Swap(i, i+1)
+				not_in_order = 1
+	while(not_in_order)
 
 var/list/ghostteleportlocs = list()
 
-/hook/startup/proc/setupGhostTeleportLocs()
+proc/process_ghost_teleport_locs()
 	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome))
@@ -82,9 +89,17 @@ var/list/ghostteleportlocs = list()
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 
-	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+	var/not_in_order = 0
+	do
+		not_in_order = 0
+		if(ghostteleportlocs.len <= 1)
+			break
+		for(var/i = 1, i <= (ghostteleportlocs.len - 1), i++)
+			if(sorttext(ghostteleportlocs[i], ghostteleportlocs[i+1]) == -1)
+				ghostteleportlocs.Swap(i, i+1)
+				not_in_order = 1
+	while(not_in_order)
 
-	return 1
 
 /*-----------------------------------------------------------------------------*/
 
@@ -664,10 +679,6 @@ var/list/ghostteleportlocs = list()
 	name = "Waste Disposal"
 	icon_state = "disposal"
 
-/area/maintenance/evahallway
-	name = "\improper EVA Hallway"
-	icon_state = "eva"
-
 //Hallway
 
 /area/hallway/primary/fore
@@ -794,14 +805,6 @@ var/list/ghostteleportlocs = list()
 
 /area/crew_quarters/sleep/sec
 	name = "\improper Security Dormitories"
-	icon_state = "Sleep"
-
-/area/crew_quarters/sleep/bedrooms
-	name = "\improper Dormitory Bedroom"
-	icon_state = "Sleep"
-
-/area/crew_quarters/sleep/cryo
-	name = "\improper Cryogenic Storage"
 	icon_state = "Sleep"
 
 /area/crew_quarters/sleep_male
@@ -963,9 +966,6 @@ var/list/ghostteleportlocs = list()
 		name = "\improper Chief Engineer's office"
 		icon_state = "engine_control"
 
-	engineering_eva
-		name = "\improper Engineering EVA Storage"
-		icon_state = "engine_control"
 
 //Solars
 

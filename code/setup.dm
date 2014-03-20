@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-//#define DEBUG
+#define DEBUG
 
 #define PI 3.1415
 
@@ -642,7 +642,6 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define CHAT_ATTACKLOGS	1024
 #define CHAT_DEBUGLOGS	2048
 #define CHAT_LOOC		4096
-#define CHAT_GHOSTRADIO 8192
 
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_LOOC)
@@ -694,15 +693,13 @@ var/list/be_special_flags = list(
 #define RIGHT 2
 
 // for secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
-#define HEALTH_HUD		1 // a simple line rounding the mob's number health
-#define STATUS_HUD		2 // alive, dead, diseased, etc.
+#define HEALTH_HUD		1 // dead, alive, sick, health status
+#define STATUS_HUD		2 // a simple line rounding the mob's number health
 #define ID_HUD			3 // the job asigned to your ID
 #define WANTED_HUD		4 // wanted, released, parroled, security status
-#define IMPLOYAL_HUD		5 // loyality implant
+#define IMPLOYAL_HUD	5 // loyality implant
 #define IMPCHEM_HUD		6 // chemical implant
-#define IMPTRACK_HUD		7 // tracking implant
-#define SPECIALROLE_HUD 	8 // AntagHUD image
-#define STATUS_HUD_OOC		9 // STATUS_HUD without virus db check for someone being ill.
+#define IMPTRACK_HUD	7 // tracking implant
 
 //Pulse levels, very simplified
 #define PULSE_NONE		0	//so !M.pulse checks would be possible
@@ -714,8 +711,6 @@ var/list/be_special_flags = list(
 //feel free to add shit to lists below
 var/list/tachycardics = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine")	//increase heart rate
 var/list/bradycardics = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")					//decrease heart rate
-var/list/heartstopper = list("potassium_phorochloride", "zombie_powder") //this stops the heart
-var/list/cheartstopper = list("potassium_chloride") //this stops the heart when overdose is met -- c = conditional
 
 //proc/get_pulse methods
 #define GETPULSE_HAND	0	//less accurate (hand)
@@ -728,24 +723,19 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 	)
 
 //Species flags.
-#define NO_BLOOD 1
+#define NO_EAT 1
 #define NO_BREATHE 2
-#define NO_SCAN 4
-#define NO_PAIN 8
-
-#define HAS_SKIN_TONE 16
-#define HAS_LIPS 32
-#define HAS_UNDERWEAR 64
-#define HAS_TAIL 128
-
-#define IS_SLOW 256
-#define IS_PLANT 512
-#define IS_WHITELISTED 1024
-
-#define RAD_ABSORB 2048
-#define REQUIRE_LIGHT 4096
-
-#define IS_SYNTHETIC 8192
+#define NO_SLEEP 4
+#define RAD_ABSORB 8
+#define NO_SCAN 16
+#define NON_GENDERED 32
+#define REQUIRE_LIGHT 64
+#define WHITELISTED 128
+#define HAS_SKIN_TONE 256
+#define HAS_LIPS 512
+#define HAS_UNDERWEAR 1024
+#define HAS_TAIL 2048
+#define IS_PLANT 4096
 
 //Language flags.
 #define WHITELISTED 1  // Language is available if the speaker is whitelisted.
@@ -754,13 +744,3 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
 #define ZONE_SLEEPING 0
-
-//some colors
-#define COLOR_RED 		"#FF0000"
-#define COLOR_GREEN 	"#00FF00"
-#define COLOR_BLUE 		"#0000FF"
-#define COLOR_CYAN 		"#00FFFF"
-#define COLOR_PINK 		"#FF00FF"
-#define COLOR_YELLOW 	"#FFFF00"
-#define COLOR_ORANGE 	"#FF9900"
-#define COLOR_WHITE 	"#FFFFFF"

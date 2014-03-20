@@ -131,14 +131,6 @@
 		..()
 		reagents.add_reagent("kelotane", 15)
 
-/obj/item/weapon/reagent_containers/pill/paracetamol
-	name = "Paracetamol pill"
-	desc = "Tylenol! A painkiller for the ages. Chewables!"
-	icon_state = "pill8"
-	New()
-		..()
-		reagents.add_reagent("paracetamol", 15)
-
 /obj/item/weapon/reagent_containers/pill/tramadol
 	name = "Tramadol pill"
 	desc = "A simple painkiller."
