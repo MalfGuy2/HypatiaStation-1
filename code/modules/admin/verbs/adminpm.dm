@@ -55,9 +55,9 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = input(src,"Message:", "Private message to [C.key]") as text|null
+		msg = input(src,"Message:", "Private message to [key_name(C, 0, holder ? 1 : 0)]") as text|null
 
-		if(!msg) return //if message is blank, do nothing further
+		if(!msg)	return
 		if(!C)
 			if(holder)	src << "<font color='red'>Error: Admin-PM: Client not found.</font>"
 			else		adminhelp(msg)	//admin we are replying to has vanished, adminhelp instead
@@ -75,22 +75,17 @@
 	var/send_pm_type = " "
 	var/recieve_pm_type = "Player"
 
-/*
-		if(!C.holder)
-			src << "<font color='red'>Error: You don't have permission to do that!</color>"
-			return */
 
 	if(holder)
-		//mod PMs are maroon, admins are red, donors are plain blue
-		//PMs sent from admins, mods and donors display their rank
-		if(holder.rights & R_ADMIN)
-			recieve_color = "red"
-		else if(holder.rights & R_MOD)
-			recieve_color = "maroon"
-		else if(holder.rights & R_DONOR)
-			recieve_color = "blue"
-		send_pm_type = holder.rank + " "
-		recieve_pm_type = holder.rank
+		//mod PMs are maroon
+		//PMs sent from admins and mods display their rank
+		if(holder)
+			if( holder.rights & R_ADMIN )
+				recieve_color = "red"
+			else
+				recieve_color = "maroon"
+			send_pm_type = holder.rank + " "
+			recieve_pm_type = holder.rank
 
 	else if(!C.holder)
 		src << "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>"
