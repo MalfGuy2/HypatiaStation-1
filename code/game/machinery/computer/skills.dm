@@ -289,8 +289,6 @@ What a mess.*/
 				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Purge All Records")
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
 				for(var/datum/data/record/R in data_core.security)
 					del(R)
 				temp = "All Employment records deleted."
@@ -302,9 +300,6 @@ What a mess.*/
 					temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 //RECORD CREATE
 			if ("New Record (General)")
-				
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
 				var/datum/data/record/G = new /datum/data/record()
 				G.fields["name"] = "New Record"
 				G.fields["id"] = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
@@ -359,7 +354,7 @@ What a mess.*/
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
-							for(var/rank in joblist)
+							for(var/rank in get_all_jobs())
 								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
@@ -377,16 +372,12 @@ What a mess.*/
 				switch(href_list["choice"])
 					if ("Change Rank")
 						if (active1)
-							if(PDA_Manifest.len)
-								PDA_Manifest.Cut()
 							active1.fields["rank"] = href_list["rank"]
-							if(href_list["rank"] in joblist)
+							if(href_list["rank"] in get_all_jobs())
 								active1.fields["real_rank"] = href_list["real_rank"]
 
 					if ("Delete Record (ALL) Execute")
 						if (active1)
-							if(PDA_Manifest.len)
-								PDA_Manifest.Cut()
 							for(var/datum/data/record/R in data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									del(R)

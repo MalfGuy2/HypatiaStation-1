@@ -71,7 +71,7 @@
 
 /obj/item/weapon/book/manual/supermatter_engine
 	name = "Supermatter Engine User's Guide"
-	icon_state = "bookSupermatter"
+	icon_state = "bookParticleAccelerator"   //TEMP FIXME
 	author = "Waleed Asad"
 	title = "Supermatter Engine User's Guide"
 
@@ -735,7 +735,7 @@
 /obj/item/weapon/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
-	author = "Victoria Ponsonby"
+	author = "Lord Frenrir Cageth"
 	title = "Chef Recipes"
 
 	dat = {"<html>
@@ -806,6 +806,8 @@
 
 				<h2>SOUP:<h2>
 				Add any food item to a bowl, which you can get from a dinnerware vendor.
+
+
 				</body>
 				</html>
 			"}

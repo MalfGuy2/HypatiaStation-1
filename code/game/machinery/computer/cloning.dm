@@ -10,7 +10,7 @@
 	var/scantemp = "Scanner unoccupied"
 	var/menu = 1 //Which menu screen to display
 	var/list/records = list()
-	var/datum/dna2/record/active_record = null
+	var/datum/data/record/active_record = null
 	var/obj/item/weapon/disk/data/diskette = null //Mostly so the geneticist can steal everything.
 	var/loading = 0 // Nice loading text
 
@@ -136,8 +136,8 @@
 		if(2)
 			dat += "<h4>Current records</h4>"
 			dat += "<a href='byond://?src=\ref[src];menu=1'>Back</a><br><br>"
-			for(var/datum/dna2/record/R in src.records)
-				dat += "<li><a href='byond://?src=\ref[src];view_rec=\ref[R]'>[R.dna.real_name]</a><li>"
+			for(var/datum/data/record/R in src.records)
+				dat += "<a href='byond://?src=\ref[src];view_rec=\ref[R]'>[R.fields["id"]]-[R.fields["name"]]</a><br>"
 
 		if(3)
 			dat += "<h4>Selected Record</h4>"
@@ -146,11 +146,10 @@
 			if (!src.active_record)
 				dat += "<font color=red>ERROR: Record not found.</font>"
 			else
-				dat += {"<br><font size=1><a href='byond://?src=\ref[src];del_rec=1'>Delete Record</a></font><br>
-					<b>Name:</b> [src.active_record.dna.real_name]<br>"}
-				var/obj/item/weapon/implant/health/H = null
-				if(src.active_record.implant)
-					H=locate(src.active_record.implant)
+				dat += "<br><font size=1><a href='byond://?src=\ref[src];del_rec=1'>Delete Record</a></font><br>"
+				dat += "<b>Name:</b> [src.active_record.fields["name"]]<br>"
+
+				var/obj/item/weapon/implant/health/H = locate(src.active_record.fields["imp"])
 
 				if ((H) && (istype(H)))
 					dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>"
@@ -167,13 +166,13 @@
 				else
 					dat += "<br>" //Keeping a line empty for appearances I guess.
 
-				dat += {"<b>UI:</b> [src.active_record.dna.uni_identity]<br>
-				<b>SE:</b> [src.active_record.dna.struc_enzymes]<br><br>"}
+				dat += {"<b>UI:</b> [src.active_record.fields["UI"]]<br>
+				<b>SE:</b> [src.active_record.fields["SE"]]<br><br>"}
 
 				if(pod1 && pod1.biomass >= CLONE_BIOMASS)
 					dat += {"<a href='byond://?src=\ref[src];clone=\ref[src.active_record]'>Clone</a><br>"}
 				else
-					dat += {"<b>Insufficient stem cell charges</b><br>"}
+					dat += {"<b>Unsufficient stem cell charges</b><br>"}
 
 		if(4)
 			if (!src.active_record)
@@ -218,8 +217,8 @@
 
 	else if (href_list["view_rec"])
 		src.active_record = locate(href_list["view_rec"])
-		if(istype(src.active_record,/datum/dna2/record))
-			if ((isnull(src.active_record.ckey)))
+		if(istype(src.active_record,/datum/data/record))
+			if ((isnull(src.active_record.fields["ckey"])) || (src.active_record.fields["ckey"] == ""))
 				del(src.active_record)
 				src.temp = "ERROR: Record Corrupt"
 			else
@@ -249,7 +248,7 @@
 	else if (href_list["disk"]) //Load or eject.
 		switch(href_list["disk"])
 			if("load")
-				if ((isnull(src.diskette)) || isnull(src.diskette.buf))
+				if ((isnull(src.diskette)) || (src.diskette.data == ""))
 					src.temp = "Load error."
 					src.updateUsrDialog()
 					return
@@ -259,7 +258,12 @@
 					src.updateUsrDialog()
 					return
 
-				src.active_record = src.diskette.buf
+				if (src.diskette.data_type == "ui")
+					src.active_record.fields["UI"] = src.diskette.data
+					if (src.diskette.ue)
+						src.active_record.fields["name"] = src.diskette.owner
+				else if (src.diskette.data_type == "se")
+					src.active_record.fields["SE"] = src.diskette.data
 
 				src.temp = "Load successful."
 			if("eject")
@@ -273,24 +277,28 @@
 			src.updateUsrDialog()
 			return
 
-		// DNA2 makes things a little simpler.
-		src.diskette.buf=src.active_record
-		src.diskette.buf.types=0
 		switch(href_list["save_disk"]) //Save as Ui/Ui+Ue/Se
 			if("ui")
-				src.diskette.buf.types=DNA2_BUF_UI
+				src.diskette.data = src.active_record.fields["UI"]
+				src.diskette.ue = 0
+				src.diskette.data_type = "ui"
 			if("ue")
-				src.diskette.buf.types=DNA2_BUF_UI|DNA2_BUF_UE
+				src.diskette.data = src.active_record.fields["UI"]
+				src.diskette.ue = 1
+				src.diskette.data_type = "ui"
 			if("se")
-				src.diskette.buf.types=DNA2_BUF_SE
-		src.diskette.name = "data disk - '[src.active_record.dna.real_name]'"
+				src.diskette.data = src.active_record.fields["SE"]
+				src.diskette.ue = 0
+				src.diskette.data_type = "se"
+		src.diskette.owner = src.active_record.fields["name"]
+		src.diskette.name = "data disk - '[src.diskette.owner]'"
 		src.temp = "Save \[[href_list["save_disk"]]\] successful."
 
 	else if (href_list["refresh"])
 		src.updateUsrDialog()
 
 	else if (href_list["clone"])
-		var/datum/dna2/record/C = locate(href_list["clone"])
+		var/datum/data/record/C = locate(href_list["clone"])
 		//Look for that player! They better be dead!
 		if(istype(C))
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
@@ -305,17 +313,17 @@
 			else if(!config.revival_cloning)
 				temp = "Error: Unable to initiate cloning cycle."
 
-			else if(pod1.growclone(C))
+			else if(pod1.growclone(C.fields["ckey"], C.fields["name"], C.fields["UI"], C.fields["SE"], C.fields["mind"], C.fields["mrace"], C.fields["languages"]))
 				temp = "Initiating cloning cycle..."
 				records.Remove(C)
 				del(C)
 				menu = 1
 			else
 
-				var/mob/selected = find_dead_player("[C.ckey]")
+				var/mob/selected = find_dead_player("[C.fields["ckey"]]")
 				selected << 'sound/machines/chime.ogg'	//probably not the best sound but I think it's reasonable
 				var/answer = alert(selected,"Do you want to return to life?","Cloning","Yes","No")
-				if(answer != "No" && pod1.growclone(C))
+				if(answer != "No" && pod1.growclone(C.fields["ckey"], C.fields["name"], C.fields["UI"], C.fields["SE"], C.fields["mind"], C.fields["mrace"], C.fields["languages"], C.fields["interface"]))
 					temp = "Initiating cloning cycle..."
 					records.Remove(C)
 					del(C)
@@ -355,25 +363,27 @@
 
 	subject.dna.check_integrity()
 
-	var/datum/dna2/record/R = new /datum/dna2/record()
-	R.dna=subject.dna
-	R.ckey = subject.ckey
-	R.id= copytext(md5(subject.real_name), 2, 6)
-	R.name=R.dna.real_name
-	R.types=DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
+	var/datum/data/record/R = new /datum/data/record(  )
+	R.fields["mrace"] = subject.species
+	R.fields["ckey"] = subject.ckey
+	R.fields["name"] = subject.real_name
+	R.fields["id"] = copytext(md5(subject.real_name), 2, 6)
+	R.fields["UI"] = subject.dna.uni_identity
+	R.fields["SE"] = subject.dna.struc_enzymes
+	R.fields["languages"] = subject.languages
 
 	//Add an implant if needed
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
 	if (isnull(imp))
 		imp = new /obj/item/weapon/implant/health(subject)
 		imp.implanted = subject
-		R.implant = "\ref[imp]"
+		R.fields["imp"] = "\ref[imp]"
 	//Update it if needed
 	else
-		R.implant = "\ref[imp]"
+		R.fields["imp"] = "\ref[imp]"
 
 	if (!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
-		R.mind = "\ref[subject.mind]"
+		R.fields["mind"] = "\ref[subject.mind]"
 
 	src.records += R
 	scantemp = "Subject successfully scanned."
@@ -381,8 +391,8 @@
 //Find a specific record by key.
 /obj/machinery/computer/cloning/proc/find_record(var/find_key)
 	var/selected_record = null
-	for(var/datum/dna2/record/R in src.records)
-		if (R.ckey == find_key)
+	for(var/datum/data/record/R in src.records)
+		if (R.fields["ckey"] == find_key)
 			selected_record = R
 			break
 	return selected_record

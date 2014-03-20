@@ -213,11 +213,11 @@
 	if(prob(prob_right_job))
 		if(correct_person)
 			if(correct_person:assigned_role=="MODE")
-				changeling_job = pick(joblist)
+				changeling_job = pick(get_all_jobs())
 			else
 				changeling_job = correct_person:assigned_role
 	else
-		changeling_job = pick(joblist)
+		changeling_job = pick(get_all_jobs())
 	if(prob(prob_right_dude) && ticker.mode == "changeling")
 		if(correct_person:assigned_role=="MODE")
 			changeling_name = correct_person:current

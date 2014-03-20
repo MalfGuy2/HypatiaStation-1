@@ -28,7 +28,7 @@
 
 	return ..()
 
-//Ears: headsets, earmuffs and tiny objects
+//Ears: currently only used for headsets and earmuffs
 /obj/item/clothing/ears
 	name = "ears"
 	w_class = 1.0
@@ -125,7 +125,7 @@ BLIND     // can't see anything
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude","Soghun","Tajaran")
+	species_restricted = list("exclude","Unathi","Tajaran")
 
 /obj/item/clothing/gloves/examine()
 	set src in usr
@@ -173,7 +173,7 @@ BLIND     // can't see anything
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
-	species_restricted = list("exclude","Soghun","Tajaran")
+	species_restricted = list("exclude","Unathi","Tajaran")
 
 //Suit
 /obj/item/clothing/suit
@@ -285,18 +285,16 @@ BLIND     // can't see anything
 	var/mob/M = usr
 	if (istype(M, /mob/dead/)) return
 	if (usr.stat) return
-	if(has_sensor >= 2)
+	if(src.has_sensor >= 2)
 		usr << "The controls are locked."
 		return 0
-	if(has_sensor <= 0)
+	if(src.has_sensor <= 0)
 		usr << "This suit does not have any sensors."
 		return 0
-
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
-	sensor_mode = modes.Find(switchMode) - 1
-
-	switch(sensor_mode)
+	src.sensor_mode += 1
+	if(src.sensor_mode > 3)
+		src.sensor_mode = 0
+	switch(src.sensor_mode)
 		if(0)
 			usr << "You disable your suit's remote sensing equipment."
 		if(1)

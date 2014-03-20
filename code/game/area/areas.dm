@@ -100,7 +100,6 @@
 		return
 	if( !fire )
 		fire = 1
-		master.fire = 1		//used for firedoor checks
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -123,7 +122,6 @@
 /area/proc/firereset()
 	if (fire)
 		fire = 0
-		master.fire = 0		//used for firedoor checks
 		mouse_opacity = 0
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -181,18 +179,23 @@
 /area/proc/updateicon()
 	if ((fire || eject || party) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
 		if(fire && !eject && !party)
-			icon_state = "blue"
+			icon_state = "red"
+			blend_mode = BLEND_MULTIPLY
 		/*else if(atmosalm && !fire && !eject && !party)
 			icon_state = "bluenew"*/
 		else if(!fire && eject && !party)
 			icon_state = "red"
+			blend_mode = BLEND_MULTIPLY
 		else if(party && !fire && !eject)
 			icon_state = "party"
+			blend_mode = BLEND_MULTIPLY
 		else
 			icon_state = "blue-red"
+			blend_mode = BLEND_MULTIPLY
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
+		blend_mode = BLEND_DEFAULT
 
 
 /*

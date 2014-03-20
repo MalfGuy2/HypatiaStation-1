@@ -149,7 +149,7 @@
 	return
 
 /obj/item/weapon/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
+	name = "Pill bottle (kelotane)"
 	desc = "Contains pills used to treat burns."
 
 	New()
@@ -163,7 +163,7 @@
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 
 /obj/item/weapon/storage/pill_bottle/antitox
-	name = "bottle of anti-toxin pills"
+	name = "Pill bottle (Anti-toxin)"
 	desc = "Contains pills used to counter toxins."
 
 	New()
@@ -177,7 +177,7 @@
 		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 
 /obj/item/weapon/storage/pill_bottle/inaprovaline
-	name = "bottle of inaprovaline pills"
+	name = "Pill bottle (inaprovaline)"
 	desc = "Contains pills used to stabilize patients."
 
 	New()
