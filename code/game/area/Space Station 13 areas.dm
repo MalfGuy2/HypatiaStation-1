@@ -963,6 +963,9 @@ var/list/ghostteleportlocs = list()
 		name = "\improper Chief Engineer's office"
 		icon_state = "engine_control"
 
+	engineering_eva
+		name = "\improper Engineering EVA Storage"
+		icon_state = "engine_control"
 
 //Solars
 
