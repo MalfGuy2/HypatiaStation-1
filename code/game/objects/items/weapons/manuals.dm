@@ -706,7 +706,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://hypatiastation.net/wiki/index.php?title=Space_law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='97%' src="http://hypatiastation.net/old/index.php?title=Space_law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>
 
@@ -756,12 +756,6 @@
 				<h2>Basics:<h2>
 				Knead an egg and some flour to make dough. Bake that to make a bun or flatten and cut it.
 
-				<h2>Flat Dough:<h2>
-				Use a rolling pin on some dough.
-
-				<h2>Bun:<h2>
-				Bake a dough in the microwave.
-
 				<h2>Burger:<h2>
 				Put a bun and some meat into the microwave and turn it on. Then wait.
 
@@ -789,23 +783,7 @@
 				<h2>Fries:<h2>
 				Add one potato to the processor, then bake them in the microwave.
 
-				<h2>Customizables:<h2>
-				In addition to the foods above, you can create unique dishes. Here's how:
 
-				<h2>SANDWICH:<h2>
-				Add any food item to a bread slice.
-
-				<h2>BURGER:<h2>
-				Add any food item to a bun.
-
-				<h2>SPAGETTI:<h2>
-				Add any food item to a boiled spaghetti.
-
-				<h2>PERSONAL PAN PIZZA:<h2>
-				Add any food item to some flat dough.
-
-				<h2>SOUP:<h2>
-				Add any food item to a bowl, which you can get from a dinnerware vendor.
 				</body>
 				</html>
 			"}

@@ -569,6 +569,8 @@ datum/preferences
 		user << browse(HTML, "window=antagoptions")
 		return
 
+
+
 	proc/GetPlayerAltTitle(datum/job/job)
 		return player_alt_titles.Find(job.title) > 0 \
 			? player_alt_titles[job.title] \

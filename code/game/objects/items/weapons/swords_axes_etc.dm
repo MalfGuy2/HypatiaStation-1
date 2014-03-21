@@ -178,7 +178,6 @@
 			return
 		if(..())
 			playsound(src.loc, "swing_hit", 50, 1, -1)
-			target.Weaken(4)
 			return
 	else
 		return ..()
