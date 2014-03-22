@@ -91,7 +91,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL
+	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL 
 
 	flesh_color = "#34AF10"
 
@@ -115,7 +115,7 @@
 
 	primitive = /mob/living/carbon/monkey/tajara
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL
+	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL | HAS_SKIN_TONE
 
 	flesh_color = "#AFA59E"
 
@@ -257,7 +257,7 @@
 	burn_mod = 0.1
 
 	warning_low_pressure = 10
-	hazard_low_pressure = 0
+	hazard_low_pressure = -1
 
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 120 //Default 200
