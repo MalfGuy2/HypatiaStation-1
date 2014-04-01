@@ -91,7 +91,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL 
+	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL
 
 	flesh_color = "#34AF10"
 
@@ -255,7 +255,6 @@
 	eyes = "blank_eyes"
 	brute_mod = 0.1
 	burn_mod = 0.1
-
 	warning_low_pressure = 10
 	hazard_low_pressure = -1
 
