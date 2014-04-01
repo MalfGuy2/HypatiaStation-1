@@ -1368,16 +1368,6 @@ datum/design/implant_free
 	materials = list("$metal" = 50, "$glass" = 50)
 	build_path = "/obj/item/weapon/implant/freedom"
 
-datum/design/chameleon
-	name = "Chameleon Jumpsuit"
-	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	id = "chameleon"
-	req_tech = list("syndicate" = 2)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 500)
-	build_path = "/obj/item/clothing/under/chameleon"
-
-
 datum/design/bluespacebeaker
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
@@ -1398,6 +1388,43 @@ datum/design/noreactbeaker
 	reliability_base = 76
 	build_path = "/obj/item/weapon/reagent_containers/glass/beaker/noreact"
 	category = "Misc"
+
+datum/design/scalpel_laser1
+	name = "Basic Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
+	id = "scalpel_laser1"
+	req_tech = list("biotech" = 2, "materials" = 2, "magnets" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 12500, "$glass" = 7500)
+	build_path = "/obj/item/weapon/scalpel/laser1"
+
+datum/design/scalpel_laser2
+	name = "Improved Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
+	id = "scalpel_laser2"
+	req_tech = list("biotech" = 3, "materials" = 4, "magnets" = 4)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 12500, "$glass" = 7500, "$silver" = 2500)
+	build_path = "/obj/item/weapon/scalpel/laser2"
+
+datum/design/scalpel_laser3
+	name = "Advanced Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
+	id = "scalpel_laser3"
+	req_tech = list("biotech" = 4, "materials" = 6, "magnets" = 5)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 12500, "$glass" = 7500, "$silver" = 2000, "$gold" = 1500)
+	build_path = "/obj/item/weapon/scalpel/laser3"
+
+datum/design/scalpel_manager
+	name = "Incision Management System"
+	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
+	id = "scalpel_manager"
+	req_tech = list("biotech" = 4, "materials" = 7, "magnets" = 5, "programming" = 4)
+	build_type = PROTOLATHE
+	materials = list ("$metal" = 12500, "$glass" = 7500, "$silver" = 1500, "$gold" = 1500, "$diamond" = 750)
+	build_path = "/obj/item/weapon/scalpel/manager"
+
 /////////////////////////////////////////
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
@@ -1623,9 +1650,9 @@ datum/design/bluespace_crystal
 	name = "Artificial Bluespace Crystal"
 	desc = "A small blue crystal with mystical properties."
 	id = "bluespace_crystal"
-	req_tech = list("bluespace" = 2, "materials" = 3)
+	req_tech = list("bluespace" = 5, "materials" = 7)
 	build_type = PROTOLATHE
-	materials = list("$metal" = 1500, "$glass" = 1500, "$plasma" = 1500)
+	materials = list("$gold" = 1500, "$diamond" = 3000, "$plasma" = 1500)
 	reliability_base = 100
 	build_path = "/obj/item/bluespace_crystal/artificial"
 
@@ -1685,9 +1712,11 @@ datum/design/security_hud
 	src.pixel_y = rand(-5.0, 5)
 
 
-/////////////////////////////////////////
-//////////////Borg Upgrades//////////////
-/////////////////////////////////////////
+////////////////////////////////////////
+//////////////Illegal Shit//////////////
+////////////////////////////////////////
+//Well kind of illegal, it's debatable//
+////////////////////////////////////////
 datum/design/borg_syndicate_module
 	name = "Borg Illegal Weapons Upgrade"
 	desc = "Allows for the construction of illegal upgrades for cyborgs"
@@ -1696,6 +1725,182 @@ datum/design/borg_syndicate_module
 	req_tech = list("combat" = 4, "syndicate" = 3)
 	build_path = "/obj/item/borg/upgrade/syndicate"
 	category = "Cyborg Upgrade Modules"
+datum/design/revolver
+	name = ".357 Revolver"
+	desc = "Badass revolver for badass folks."
+	id = "357revolver"
+	req_tech = list("syndicate" = 2, "combat" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 2000, "$plasma" = 2000)
+	build_path = "/obj/item/weapon/gun/projectile"
+datum/design/revolverammo
+	name = ".357 Ammo"
+	desc = "Badass ammo for a badass revolver for badass folks."
+	id = "357ammo"
+	req_tech = list("syndicate" = 2, "combat" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500)
+	build_path = "/obj/item/ammo_magazine/a357"
+datum/design/crossbow
+	name = "Energy Crossbow"
+	desc = "Stealthy crossbow for silent takedowns."
+	id = "crossbow"
+	req_tech = list("syndicate" = 2, "combat" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500, "$plasma" = 500)
+	build_path = "/obj/item/weapon/gun/energy/crossbow"
+datum/design/fuckinglightsaber
+	name = "Energy Sword"
+	desc = "IT'S A MOTHERFUCKING LIGHTSABER, DUDE!"
+	id = "fuckinglightsaber"
+	req_tech = list("syndicate" = 3, "combat" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 3000, "$plasma" = 3000, "$diamond" = 1000)
+	build_path = "/obj/item/weapon/melee/energy/sword"
+datum/design/syndibox
+	name = "Mysterious Box"
+	desc = "A weird box."
+	id = "syndi_box"
+	req_tech = list("syndicate" = 4)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500, "$glass" = 500, "$plasma" = 500, "$diamond" = 500)
+	build_path = "/obj/item/weapon/storage/box/syndicate"
+datum/design/empnade
+	name = "EMP Pack"
+	desc = "A pack of EMP grenades"
+	id = "empnade"
+	req_tech = list("syndicate" = 2, "combat" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500, "$uranium" = 500)
+	build_path = "/obj/item/weapon/storage/box/emps"
+datum/design/parapen
+	name = "Paralysis Pen"
+	desc = "A injector disguised as a pen."
+	id = "parapen"
+	req_tech = list("syndicate" = 2, "combat" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500)
+	build_path = "/obj/item/weapon/pen/paralysis"
+datum/design/syndisoap
+	name = "Mysterious Soap"
+	desc = "Buy 10 and you get a cool award of nothing!"
+	id = "syndisoap"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$plasma" = 500)
+	build_path = "/obj/item/weapon/soap/syndie"
+datum/design/noslips
+	name = "Anti-slipping Shoes"
+	desc = "Shoes that prevent slipping and falling."
+	id = "noslips"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500)
+	build_path = "/obj/item/clothing/shoes/syndigaloshes"
+datum/design/chameleon
+	name = "Chameleon Jumpsuit"
+	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
+	id = "chameleon"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500)
+	build_path = "/obj/item/clothing/under/chameleon"
+datum/design/syndid
+	name = "Mysterious ID"
+	desc = "A weird ID that can scan other ID's access and be renamed."
+	id = "syndid"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500)
+	build_path = "/obj/item/weapon/card/id/syndicate"
+datum/design/voicemask
+	name = "Voice Changer"
+	desc = "A mask that can imitate the voice of whoever is using it."
+	id = "voicemask"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 1500)
+	build_path = "/obj/item/clothing/mask/gas/voice"
+datum/design/champroject
+	name = "Chameleon Projecter"
+	desc = "A small device that can scan anything and pretend to be it."
+	id = "champroject"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500, "$glass" = 500)
+	build_path = "/obj/item/device/chameleon"
+datum/design/emag
+	name = "Cryptographic Sequencer"
+	desc = "A broken ID card that can break electronics."
+	id = "emag"
+	req_tech = list("syndicate" = 3, "magnets" = 2)
+	build_type = PROTOLATHE
+	materials = list("$diamond" = 3000)
+	build_path = "/obj/item/weapon/card/emag"
+datum/design/toolbox
+	name = "Mysterious Toolbox"
+	desc = "A mysterious toolbox."
+	id = "toolbox"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 1000)
+	build_path = "/obj/item/weapon/storage/toolbox/syndicate"
+datum/design/spacesuit
+	name = "Mysterious Space Suit"
+	desc = "It's a red space suit."
+	id = "spacesuit"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$plasma" = 500, "$glass" = 500)
+	build_path = "/obj/item/weapon/storage/box/syndie_kit/space"
+datum/design/thermals
+	name = "Thermal Imaging Goggles"
+	desc = "These goggles allow you to see through walls."
+	id = "thermals"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$glass" = 500)
+	build_path = "/obj/item/clothing/glasses/thermal/syndi"
+datum/design/hackedai
+	name = "Hacked AI Module"
+	desc = "A hacked AI module."
+	id = "hackedai"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$glass" = 6000)
+	build_path = "/obj/item/weapon/aiModule/syndicate"
+datum/design/c4
+	name = "C4"
+	desc = "Explosives."
+	id = "c4"
+	req_tech = list("syndicate" = 3, "combat" = 3)
+	build_type = PROTOLATHE
+	materials = list("$plasma" = 6000)
+	build_path = "/obj/item/weapon/plastiquen"
+datum/design/powersink
+	name = "Powersink"
+	desc = "A power absorbing device"
+	id = "powersink"
+	req_tech = list("syndicate" = 2, "power" = 3)
+	build_type = PROTOLATHE
+	materials = list("$diamond" = 500)
+	build_path = "/obj/item/device/powersink"
+datum/design/uplink
+	name = "Uplink Implant"
+	desc = "A implant with a weird uplink in it."
+	id = "uplink"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$diamond" = 3000)
+	build_path = "/obj/item/weapon/storage/box/syndie_kit/imp_uplink"
+datum/design/balloon
+	name = "Badass Balloon"
+	desc = "Balloon for the cool kids."
+	id = "balloon"
+	req_tech = list("syndicate" = 2)
+	build_type = PROTOLATHE
+	materials = list("$metal" = 500)
+	build_path = "/obj/item/toy/syndicateballoon"
 
 /////////////////////////////////////////
 /////////////PDA and Radio stuff/////////

@@ -252,7 +252,7 @@ datum
 			name = "Dexalin"
 			id = "dexalin"
 			result = "dexalin"
-			required_reagents = list("oxygen" = 2, "plasma" = 0.1)
+			required_reagents = list("oxygen" = 2)
 			required_catalysts = list("plasma" = 5)
 			result_amount = 1
 
@@ -302,7 +302,7 @@ datum
 			name = "Clonexadone"
 			id = "clonexadone"
 			result = "clonexadone"
-			required_reagents = list("cryoxadone" = 1, "sodium" = 1, "plasma" = 0.1)
+			required_reagents = list("cryoxadone" = 1, "sodium" = 1)
 			required_catalysts = list("plasma" = 5)
 			result_amount = 2
 
@@ -461,8 +461,6 @@ datum
 				S.set_up(holder, created_volume, 0, location)
 				playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 				spawn(0)
-					S.start()
-					sleep(10)
 					S.start()
 				holder.clear_reagents()
 				return

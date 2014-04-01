@@ -37,7 +37,11 @@
 		/mob/living/simple_animal/cow,
 		/mob/living/simple_animal/hostile/retaliate/goat,
 		/obj/machinery/computer/centrifuge,
-		/obj/machinery/sleeper	)
+		/obj/machinery/sleeper,
+		/obj/machinery/smartfridge/,
+		/obj/machinery/biogenerator,
+		/obj/machinery/hydroponics,
+		/obj/machinery/constructable_frame)
 
 	New()
 		..()
@@ -47,7 +51,6 @@
 		set src in view()
 		..()
 		if (!(usr in view(2)) && usr!=src.loc) return
-		usr << "\blue It contains:"
 		if(reagents && reagents.reagent_list.len)
 			usr << "\blue It contains [src.reagents.total_volume] units of liquid."
 		else
@@ -121,6 +124,9 @@
 			return
 
 		else if(istype(target, /obj/machinery/bunsen_burner))
+			return
+
+		else if(istype(target, /obj/machinery/smartfridge))
 			return
 
 		else if(istype(target, /obj/machinery/radiocarbon_spectrometer))
