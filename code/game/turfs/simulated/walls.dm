@@ -91,7 +91,7 @@
 		dismantle_wall()
 
 /turf/simulated/wall/attack_paw(mob/user as mob)
-    if ((HULK in user.mutations))
+	if ((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 	if ((HULK in user.mutations)||user.get_species() == "Obsedai")
 		if (prob(40))
@@ -123,7 +123,7 @@
 	return
 
 /turf/simulated/wall/attack_hand(mob/user as mob)
-    if ((HULK in user.mutations))
+	if ((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 	if ((HULK in user.mutations)||user.get_species() == "Obsedai")
 		if (prob(40))
