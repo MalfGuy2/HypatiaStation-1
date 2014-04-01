@@ -52,7 +52,7 @@ datum/shuttle_controller/proc/shuttlealert(var/X)
 datum/shuttle_controller/proc/recall()
 	if(direction == 1)
 		var/timeleft = timeleft()
-		if(alert == 0) // Thank god. This var exists. -- Dalekfodder
+		if(alert == 0)
 			if(timeleft >= 600)
 				return
 			captain_announce("The emergency shuttle has been recalled.")

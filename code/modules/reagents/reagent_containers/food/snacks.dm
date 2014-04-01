@@ -78,20 +78,18 @@
 		if(reagents)								//Handle ingestion of the reagent.
 			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
 			if(reagents.total_volume)
-				reagents.reaction(M, INGEST)
-				spawn(5)
-					if(reagents.total_volume > bitesize)
-						/*
-						 * I totally cannot understand what this code supposed to do.
-						 * Right now every snack consumes in 2 bites, my popcorn does not work right, so I simplify it. -- rastaf0
-						var/temp_bitesize =  max(reagents.total_volume /2, bitesize)
-						reagents.trans_to(M, temp_bitesize)
-						*/
-						reagents.trans_to(M, bitesize)
-					else
-						reagents.trans_to(M, reagents.total_volume)
-					bitecount++
-					On_Consume(M)
+				if(reagents.total_volume > bitesize)
+					/*
+					 * I totally cannot understand what this code supposed to do.
+					 * Right now every snack consumes in 2 bites, my popcorn does not work right, so I simplify it. -- rastaf0
+					var/temp_bitesize =  max(reagents.total_volume /2, bitesize)
+					reagents.trans_to(M, temp_bitesize)
+					*/
+					reagents.trans_to_ingest(M, bitesize)
+				else
+					reagents.trans_to_ingest(M, reagents.total_volume)
+				bitecount++
+				On_Consume(M)
 			return 1
 
 	return 0
@@ -671,9 +669,9 @@
 		src.bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/meatball
-	name = "Meatball"
-	desc = "A great meal all round. Not a cord of wood."
-	icon_state = "faggot"
+	name = "meatball"
+	desc = "A great meal all round."
+	icon_state = "meatball"
 	filling_color = "#DB0000"
 
 	New()
@@ -2769,6 +2767,7 @@
 ///////////////////////////////////////////
 // new old food stuff from bs12
 ///////////////////////////////////////////
+
 // Flour + egg = dough
 /obj/item/weapon/reagent_containers/food/snacks/flour/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/egg))

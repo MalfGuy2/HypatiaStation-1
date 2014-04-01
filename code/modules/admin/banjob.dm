@@ -66,8 +66,8 @@ DEBUG
 			log_admin("jobban_keylist was empty")
 	else
 		if(!establish_db_connection())
-			world.log << "Database connection failed. Reverting to the legacy ban system."
-			diary << "Database connection failed. Reverting to the legacy ban system."
+			error("Database connection failed. Reverting to the legacy ban system.")
+			log_misc("Database connection failed. Reverting to the legacy ban system.")
 			config.ban_legacy_system = 1
 			jobban_loadbanfile()
 			return
@@ -103,15 +103,6 @@ DEBUG
 
 /proc/ban_unban_log_save(var/formatted_log)
 	text2file(formatted_log,"data/ban_unban_log.txt")
-
-
-/proc/jobban_updatelegacybans()
-	if(!jobban_runonce)
-		log_admin("Updating jobbanfile!")
-		// Updates bans.. Or fixes them. Either way.
-		for(var/T in jobban_keylist)
-			if(!T)	continue
-		jobban_runonce++	//don't run this update again
 
 
 /proc/jobban_remove(X)

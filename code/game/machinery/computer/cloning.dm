@@ -124,7 +124,7 @@
 				dat += "Lock status: <a href='byond://?src=\ref[src];lock=1'>[src.scanner.locked ? "Locked" : "Unlocked"]</a><br>"
 
 			if (!isnull(src.pod1))
-				dat += "Charges: <i>[src.pod1.biomass]</i><br>"
+				dat += "Biomass: <i>[src.pod1.biomass]</i><br>"
 
 			// Database
 			dat += "<h4>Database Functions</h4>"

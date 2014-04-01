@@ -221,10 +221,8 @@
 								continue
 						else
 							continue
-					else
+					else if(!isobserver(ROI))
 						continue
-				else if(istype(ROI, /mob/dead))
-					continue
 				do_teleport(ROI, dest)
 			updateDialog()
 
