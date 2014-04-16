@@ -334,7 +334,6 @@
 						on = 0
 					continue
 
-		/*
 
 				if (selected == ORE_PROC_URANIUM + ORE_PROC_DIAMOND)
 					if (ore_uranium >= 2 && ore_diamond >= 1)
@@ -353,7 +352,6 @@
 						on = 0
 					continue
 
-		*/
 
 
 				//if a non valid combination is selected

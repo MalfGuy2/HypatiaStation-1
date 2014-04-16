@@ -494,12 +494,6 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "chal_appara_1"
 
-/obj/item/clothing/gloves/fluff/ashley_rifler_1 //Vinceluk: Ashley Rifler
-	name = "Purple Glove"
-	desc = "A single, purple glove. Initials A.R. are written on the inside of it."
-	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "ashley_rifler_1"
-
 //////////// Eye Wear ////////////
 
 /obj/item/clothing/glasses/meson/fluff/book_berner_1 //asanadas: Book Berner
@@ -598,14 +592,6 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "labcoat_pink_open"
 
-/obj/item/clothing/suit/storage/det_suit/fluff/graycoat //vinceluk: Seth Sealis
-	name = "gray coat"
-	desc = "Old, worn out coat. It's seen better days."
-	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "graycoat"
-	item_state = "graycoat"
-	item_color = "graycoat"
-
 /obj/item/clothing/suit/storage/det_suit/fluff/leatherjack //atomicdog92: Seth Sealis
 	name = "leather jacket"
 	desc = "A black leather coat, popular amongst punks, greasers, and other galactic scum."
@@ -633,7 +619,7 @@
 
 /obj/item/clothing/under/fluff/milo_hachert //Field Dress Uniform - Milo Hachert - Commissar_Drew
 	name = "field dress uniform"
-	desc = "A uniform jacket, its buttons polished to a shine, coupled with a dark pair of trousers. 'Hachert' is embroidered upon the jacket?s shoulder bar."
+	desc = "A uniform jacket, its buttons polished to a shine, coupled with a dark pair of trousers. 'Hachert' is embroidered upon the jacke??s shoulder bar."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "milohachert"
 	item_state = "milohachert"

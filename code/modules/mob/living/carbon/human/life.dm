@@ -1708,7 +1708,6 @@
 					holder.icon_state = "hudninja"
 
 			hud_list[SPECIALROLE_HUD] = holder
-
 	hud_updateflag = 0
 
 
