@@ -197,7 +197,7 @@
 	icon_state = "boots-vox"
 	species_restricted = list("Vox")
 
-	toggle()
+	/*toggle()
 		//set name = "Toggle Floor Grip"
 		if(usr.stat)
 			return
@@ -208,7 +208,7 @@
 		else
 			src.flags |= NOSLIP
 			src.magpulse = 1
-			usr << "You dig your claws deeply into the flooring, bracing yourself."
+			usr << "You dig your claws deeply into the flooring, bracing yourself."*/
 
 
 	examine()
