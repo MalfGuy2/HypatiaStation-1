@@ -49,7 +49,7 @@
 	speech_verb = "rumbles"
 	colour = "rough"
 	key = "r"
-	flags = RESTRICTED
+	flags = WHITELISTED
 
 /datum/language/diona
 	name = "Rootspeak"

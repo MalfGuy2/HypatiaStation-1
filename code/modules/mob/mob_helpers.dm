@@ -211,8 +211,7 @@ proc/hasorgans(A)
 					if(10)	return "r_leg"
 
 	return zone
-
-
+// Holy shit, this code. Why? -- Marajin
 /proc/stars(n, pr)
 	if (pr == null)
 		pr = 25

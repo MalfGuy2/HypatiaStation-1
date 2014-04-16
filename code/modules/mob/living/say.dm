@@ -81,6 +81,18 @@ var/list/department_radio_keys = list(
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1
 
+// Now we can start processing languages to sound cool!
+/mob/living/proc/handleLanguage(msg, speaking)
+	if (speaking == "Tummese") // Handle the Obsedai Language
+		var/list/split_phrase = text2list(msg," ") //Split it up into words.
+		for(var/i = length(split_phrase), i <= 0, i--)
+			var/word = split_phrase[i] //Now we can do an operation per word
+			word = word + word // Double the word for testing
+			split_phrase[i] = word //Kick the word back into the list for later
+		return sanitize(list2text(split_phrase," ")) // Return our newly mangled language
+	else // We don't have any handling for this language, spit it back
+		return msg
+
 /mob/living/say(var/message)
 
 	/*
@@ -354,11 +366,14 @@ var/list/department_radio_keys = list(
 
 	var/list/heard_a = list() // understood us
 	var/list/heard_b = list() // didn't understand us
+	var/list/heard_c = list() // understands our language
 
 	for (var/M in listening)
 		if(hascall(M,"say_understands"))
 			if (M:say_understands(src,speaking))
 				heard_a += M
+			else if (M:say_understands_language(src, speaking))
+				heard_c += M
 			else
 				heard_b += M
 		else
@@ -410,32 +425,26 @@ var/list/department_radio_keys = list(
 
 		rendered = "<span class='game say'><span class='name'>[name]</span>[alt_name] <span class='message'>[message_b]</span></span>" //Voice_name isn't too useful. You'd be able to tell who was talking presumably.
 
-
 		for (var/M in heard_b)
 			if(hascall(M,"show_message"))
 				M:show_message(rendered, 2)
 				M << speech_bubble
 
-			/*
-			if(M.client)
+	if (length(heard_c))
 
-				if(!M.client.bubbles || M == src)
-					var/image/I = image('icons/effects/speechbubble.dmi', B, "override")
-					I.override = 1
-					M << I
-			*/ /*
+		var/message_c
+		message_c = handleLanguage(message, speaking)
+		message_c = say_quote(message_c,speaking)
 
-		flick("[presay]say", B)
+		if (italics)
+			message_c = "<i>[message_c]</i>"
 
-		if(istype(loc, /turf))
-			B.loc = loc
-		else
-			B.loc = loc.loc
+		rendered = "<span class='game say'><span class='name'>[name]</span>[alt_name] <span class='message'>[message_c]</span></span>" //Voice_name isn't too useful. You'd be able to tell who was talking presumably.
 
-		spawn()
-			sleep(11)
-			del(B)
-		*/
+		for (var/M in heard_c)
+			if(hascall(M,"show_message"))
+				M:show_message(rendered, 2)
+				M << speech_bubble
 
 	//talking items
 	for(var/obj/item/weapon/O in view(3,src))
