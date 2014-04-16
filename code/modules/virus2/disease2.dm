@@ -64,7 +64,7 @@
 		if(prob(1))
 			majormutate()
 
-	//Space antibiotics stop disease completely (temporary)
+	//Space antibiotics stop disease completely
 	if(mob.reagents.has_reagent("spaceacillin"))
 		if(stage == 1 && prob(20))
 			src.cure()
