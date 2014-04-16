@@ -706,7 +706,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://hypatiastation.net/old/index.php?title=Space_law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='100%' src="http://hypatiastation.net/old/index.php?title=Space_law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>
 
@@ -771,7 +771,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://baystation12.net/wiki/index.php?title=Guide_to_Engineering&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='100%' src="http://baystation12.net/wiki/index.php?title=Guide_to_Engineering&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>
 
